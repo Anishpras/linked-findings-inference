@@ -1,0 +1,17 @@
+id,role,scenario,statement,measure,estimate,ci_low,ci_high,outcome
+H1a,confirmatory,main,"nb accuracy C - A > 0, 95% CI excluding 0",accuracy difference,0.0430,0.0110,0.0760,supported
+H1b,confirmatory,main,"nb accuracy C - B > 0, 95% CI excluding 0",accuracy difference,0.0440,0.0150,0.0740,supported
+H2a,confirmatory,main,"nb accuracy D - C < 0, 95% CI excluding 0",accuracy difference,-0.0060,-0.0280,0.0160,not supported
+H2b,confirmatory,main,"strict action items conveyed: D > max(A, B) and D < C",counts of 3645 action items,A=1887 B=1701 C=3645 D=2948 E=3645,,,supported
+S1,secondary,main,nb_pair on C - nb on C > 0 (interaction value),accuracy difference,0.0190,0.0040,0.0340,as predicted; 95% CI excludes 0
+S2,secondary,main,nb on E - baseline > 0 (checklist answers alone leak),accuracy difference,0.1540,0.1170,0.1940,as predicted; 95% CI excludes 0
+S3,secondary,main,"logical exclusions > 0 in C; 0 in A, B, D",scored households with an excluded band,A=0 B=0 C=65 D=0 E=0,,,as predicted
+S4,secondary,main,nb accuracy D - A (no directional prediction),accuracy difference,0.0370,0.0030,0.0710,reported
+S4,secondary,main,nb accuracy D - B (no directional prediction),accuracy difference,0.0380,0.0100,0.0690,reported
+S5,secondary,main,lookup coverage in C is low (mostly falls back to nb),share of scored households with >= 5 training occurrences,0.2300,,,as predicted (coverage < 0.5)
+S6,secondary,main,"default-filling unsupported outputs > 0 in A, B, D; 0 in C, E",unsupported outputs,A=1758 B=1360 C=0 D=697 E=0,,,as predicted
+S7,secondary,dep_025..main,nb accuracy gain C - A shrinks as lambda falls,"gain at lambda = 0 (independence), 0.25, 0.50, 0.75, 1",-0.0040 0.0130 0.0050 0.0540 0.0430,,,not monotone in lambda; exact population gains monotone: 0.0128 0.0358 0.0605 0.0870
+S7,secondary,dep_025..main,nb accuracy gain C - B shrinks as lambda falls,"gain at lambda = 0 (independence), 0.25, 0.50, 0.75, 1",-0.0070 0.0150 0.0290 0.0580 0.0440,,,not monotone in lambda; exact population gains monotone: 0.0142 0.0355 0.0567 0.0771
+S8,secondary,prev_balanced,nb accuracy/macro recall per view (no further prediction),accuracy/macro recall,A=0.5080/0.5036 B=0.5440/0.5390 C=0.6030/0.5989 D=0.5570/0.5523 E=0.5590/0.5540,,,reported
+S8,secondary,prev_skewed,nb accuracy/macro recall per view (no further prediction),accuracy/macro recall,A=0.7160/0.4326 B=0.7190/0.4221 C=0.7420/0.4950 D=0.7420/0.4889 E=0.7300/0.5115,,,reported
+S9,secondary,main,exact population I(band; view) in bits (see population_oracle.csv; attacker log-loss in summary_inference.csv / summary_paired.csv),mutual information (bits),A=0.1878 B=0.2179 C=0.3889 D=0.3148 E=0.2896,,,reported

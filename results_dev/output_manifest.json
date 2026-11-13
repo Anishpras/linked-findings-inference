@@ -7,6 +7,22 @@
     "sha256": "4f1dfda1df6e5b95f97c626f3db6c7fb4e007932987d2c945a597cef36d1534b",
     "bytes": 7876
   },
+  "results_dev/e_vs_d.csv": {
+    "sha256": "47a2d2a68a1de2ac27c9409ceeac73c6ffddea09b92bc747184120fbac16ad92",
+    "bytes": 3269
+  },
+  "results_dev/exploratory_controls.csv": {
+    "sha256": "13e33723e93956d8e5246b6c6b72de02d9cb956f1be8adda652762d5a3d6f589",
+    "bytes": 1763
+  },
+  "results_dev/exploratory_controls.md": {
+    "sha256": "e3489f481de3c2bb82c63106413cf5fc13b805ed526a62db862ffbd82a6b749c",
+    "bytes": 3403
+  },
+  "results_dev/exploratory_e_vs_d.md": {
+    "sha256": "abb048866e456ba3448a63d0fa8d6e4a1ab53bea805fb0a1a24284185142fa58",
+    "bytes": 5168
+  },
   "results_dev/exposure_and_deduction.csv": {
     "sha256": "dffcf518e8833b4330a1164b76a1edcca414673d5f7c23557d3f0fa4e7021895",
     "bytes": 3762
@@ -15,9 +31,21 @@
     "sha256": "28fc31d787b281209beb81a072cfcbe6ca163af7c09816989dbd0ba5cc244c98",
     "bytes": 76868
   },
+  "results_dev/h2a_seed_runs.csv": {
+    "sha256": "f8b7a30fa28059125999d09e07d6ddf07bb0c6f70cc8bd8776bf3e06c24f55eb",
+    "bytes": 2446
+  },
+  "results_dev/h2a_summary.md": {
+    "sha256": "8a3e32232659081988a923eb8a69ec7d1128d6bf4e3421b121d7e7cb5de25920",
+    "bytes": 3448
+  },
   "results_dev/hypotheses.csv": {
-    "sha256": "a415fa8be44e1b58de7c236a5292f00152a16beec3b456c90c947cb1a534f9f8",
-    "bytes": 2674
+    "sha256": "8558ea82e614a95dc14ff267630a8360f75db724cc6e2625e0fc382764626095",
+    "bytes": 4676
+  },
+  "results_dev/learning_curve.csv": {
+    "sha256": "7c510fc6298ff71f353c2619d7c651a2ffa56bad2b918d993c9b36a7e5f14d10",
+    "bytes": 5939
   },
   "results_dev/lookup_coverage.csv": {
     "sha256": "8346deb8dbf31b339809703f50dbdf1f95e1d73135a882f42faf3a236efa1833",
@@ -28,16 +56,24 @@
     "bytes": 14472493
   },
   "results_dev/per_case_report_checks.csv": {
-    "sha256": "e61fcdeecc7686b7070a45145badb0bba4dcc3e17d71579eedb54cb6e6ffaebf",
-    "bytes": 52571972
+    "sha256": "f07d8be1514eef0927652523d0f5673af0f01628652dcdaf1c64eed087d8d2bd",
+    "bytes": 71374503
   },
   "results_dev/population_oracle.csv": {
-    "sha256": "9e1b762e87ccfa47d15454667ea047778b130c4f1de0db0eac84b8ad0629e473",
-    "bytes": 4372
+    "sha256": "a0004e55a74645129685d13c785787deb890debbdb003f067c83a94213c865b5",
+    "bytes": 6098
+  },
+  "results_dev/post_review_corrections.md": {
+    "sha256": "d8838ee03bd8eccecdc735b058535b1a4e0cc1d690c431d8acb31226ceff3f28",
+    "bytes": 3450
+  },
+  "results_dev/revision_v1.1_delta.md": {
+    "sha256": "3e0bfc88d87e58f1932530defc33e72e5f535ccf7132977e4a6f62065a3cd9b8",
+    "bytes": 6517
   },
   "results_dev/run_info.json": {
-    "sha256": "9d131bb3a5325ee32b3b37f2a49c97cd9d30eb7715496f75b805acd98a3054cb",
-    "bytes": 5906
+    "sha256": "d26fd25905dd36621022d26b4e62d5d67ad472f000a4de5433756165bba775cf",
+    "bytes": 8594
   },
   "results_dev/seed_replicates.csv": {
     "sha256": "280ab81191904931ba8d8ceae42d7f482b681a5f00ec36b572e9cf17d039ba95",
@@ -56,20 +92,24 @@
     "bytes": 76595
   },
   "results_dev/summary_utility.csv": {
-    "sha256": "cb0ff705094a0e2f57d028fcc81f4d14c4b65fd03e57bf31d3c6b0c2b2926caf",
-    "bytes": 4995
+    "sha256": "4563e5c74cc6552176e3422282849b8b888ffe77d9d2ae1a9eb9dbf6797012ac",
+    "bytes": 7080
   },
   "results_dev/tradeoff.csv": {
     "sha256": "fa8299dafc61d4e8d409a55025613f6e5e10145799e225cd05769491734fa014",
     "bytes": 2919
   },
   "results_dev/utility_by_item.csv": {
-    "sha256": "a9796ab522bc5226da48692cd54b46c79a76aff3cc98abbc00373786e413a71c",
-    "bytes": 42937
+    "sha256": "91931899c809eeb68dc217821e74e8f4c8f127ab076931e18aa4ff7fd7a78f63",
+    "bytes": 53318
+  },
+  "results_dev/utility_exact.csv": {
+    "sha256": "7463015abc2d529e6447c785b7bd24ff8bfcfdc986ce1602dc3ef67d8557faa2",
+    "bytes": 9770
   },
   "results_dev/validation.json": {
-    "sha256": "7e90689995971ad70d185f501348d3c54f5a1243876dc1cca2e0528d6ed1e88e",
-    "bytes": 18240
+    "sha256": "82ef037c52faaf32dcf3c2426e62322bbdf0baa4375052f7d8a2a63b53780484",
+    "bytes": 18708
   },
   "results_dev/worked_cases.md": {
     "sha256": "d98ce7221064b6cba35d6fa61ee897b5d6e57f0280c3e797c5e2f03a17f22f5e",

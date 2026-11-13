@@ -138,7 +138,16 @@ def _ci_outcome(est, lo, hi, direction):
     return "negative point estimate; CI includes 0" if est < 0 else "not as predicted"
 
 
-def hypotheses(runs, pops):
+FROZEN = "frozen v1.0"
+CORRECTION = "post-review correction (v1.1)"
+EXPLORATORY = "exploratory, post-review (v1.1)"
+
+
+def hypotheses(runs, pops, extras=None):
+    """Rows: id, role, scenario, statement, measure, estimate, ci_low, ci_high, outcome, label.
+
+    Rows labelled "frozen v1.0" are computed exactly as at the v1.0 freeze. v1.1 relabels H2b,
+    rewords S7 and adds rows; every such change carries a v1.1 label (Revisions v1.1)."""
     main = runs["main"]
     rows = []
 
@@ -150,65 +159,96 @@ def hypotheses(runs, pops):
         ok = (est > 0 and lo > 0) if sign > 0 else (est < 0 and hi < 0)
         rows.append((hid, "confirmatory", "main", "nb accuracy %s - %s %s 0, 95%% CI excluding 0"
                      % (x, y, ">" if sign > 0 else "<"), "accuracy difference", f4(est), f4(lo), f4(hi),
-                     "supported" if ok else "not supported"))
+                     "supported" if ok else "not supported", FROZEN))
+    rows.append(("H2a-seeds", "exploratory (post hoc)", "main + 5 seed replicates",
+                 "H2a criterion across the six seed runs; see h2a_summary.md and h2a_seed_runs.csv",
+                 "runs meeting the criterion", "see h2a_summary.md", "", "", "reported", EXPLORATORY))
     conv = {v: main["utility"][(v, "strict")]["action_conveyed"] for v in main["views"]}
     tot = main["utility"][("C", "strict")]["action_total"]
     ok = conv["D"] > max(conv["A"], conv["B"]) and conv["D"] < conv["C"]
-    rows.append(("H2b", "confirmatory", "main", "strict action items conveyed: D > max(A, B) and D < C",
-                 "counts of %d action items" % tot,
+    exact_txt = ""
+    if extras is not None:
+        eu = extras[("exact_utility", "main")]
+        exact_txt = "; exact expected shares " + " ".join(
+            "%s=%s" % (v, f4(eu[(v, "strict")]["action_conveyed"] / eu[(v, "strict")]["action"])) for v in spec.VIEWS)
+    rows.append(("H2b", "descriptive (deterministic)", "main",
+                 "strict action items conveyed: D > max(A, B) and D < C",
+                 "counts of %d action items%s" % (tot, exact_txt),
                  "A=%d B=%d C=%d D=%d E=%d" % tuple(conv[v] for v in spec.VIEWS), "", "",
-                 "supported" if ok else "not supported"))
+                 ("holds" if ok else "does not hold") + "; fixed by the generator and the renderer, so not a test "
+                 "(v1.0 listed it as confirmatory)", CORRECTION))
 
-    p = paired_estimate(main, ("C", "nb_pair"), ("C", "nb"))["accuracy"]
+    p = paired_estimate(main, ("C", "nb_pair"), ("C", "nb"))
     rows.append(("S1", "secondary", "main", "nb_pair on C - nb on C > 0 (interaction value)", "accuracy difference",
-                 f4(p[0]), f4(p[1]), f4(p[2]), _ci_outcome(p[0], p[1], p[2], 1)))
+                 f4(p["accuracy"][0]), f4(p["accuracy"][1]), f4(p["accuracy"][2]),
+                 _ci_outcome(p["accuracy"][0], p["accuracy"][1], p["accuracy"][2], 1), FROZEN))
+    rows.append(("S1-logloss", "secondary measure (S9)", "main",
+                 "nb_pair on C - nb on C, mean log-loss (bits); lower is better",
+                 "log-loss difference", f4(p["logloss_bits"][0]), f4(p["logloss_bits"][1]), f4(p["logloss_bits"][2]),
+                 "secondary measure pre-specified under S9; not a replacement for the S1 accuracy criterion",
+                 CORRECTION))
     p = paired_estimate(main, ("E", "nb"), ("E", "baseline"))["accuracy"]
     rows.append(("S2", "secondary", "main", "nb on E - baseline > 0 (checklist answers alone leak)",
-                 "accuracy difference", f4(p[0]), f4(p[1]), f4(p[2]), _ci_outcome(p[0], p[1], p[2], 1)))
+                 "accuracy difference", f4(p[0]), f4(p[1]), f4(p[2]), _ci_outcome(p[0], p[1], p[2], 1), FROZEN))
     ex = {v: main["extras"][v]["deduction"]["any"] for v in main["views"]}
     ok = ex["C"] > 0 and ex["A"] == ex["B"] == ex["D"] == 0
     rows.append(("S3", "secondary", "main", "logical exclusions > 0 in C; 0 in A, B, D",
                  "scored households with an excluded band",
                  "A=%d B=%d C=%d D=%d E=%d" % tuple(ex[v] for v in spec.VIEWS), "", "",
-                 "as predicted" if ok else "not as predicted"))
+                 "as predicted" if ok else "not as predicted", FROZEN))
     for comp in (("D", "A"), ("D", "B")):
         est, lo, hi = acc_diff(main, *comp)
         rows.append(("S4", "secondary", "main", "nb accuracy %s - %s (no directional prediction)" % comp,
-                     "accuracy difference", f4(est), f4(lo), f4(hi), "reported"))
+                     "accuracy difference", f4(est), f4(lo), f4(hi), "reported", FROZEN))
     lk = main["extras"]["C"]["lookup"]
     cov = Fraction(lk["covered"], lk["n"])
     rows.append(("S5", "secondary", "main", "lookup coverage in C is low (mostly falls back to nb)",
                  "share of scored households with >= 5 training occurrences", f4(cov), "", "",
-                 "as predicted (coverage < 0.5)" if cov < Fraction(1, 2) else "not as predicted"))
+                 "as predicted (coverage < 0.5)" if cov < Fraction(1, 2) else "not as predicted", FROZEN))
     uns = {v: main["utility"][(v, "default_fill")]["unsupported"] for v in main["views"]}
     ok = all(uns[v] > 0 for v in "ABD") and uns["C"] == 0 and uns["E"] == 0
     rows.append(("S6", "secondary", "main", "default-filling unsupported outputs > 0 in A, B, D; 0 in C, E",
-                 "unsupported outputs", "A=%d B=%d C=%d D=%d E=%d" % tuple(uns[v] for v in spec.VIEWS), "", "",
-                 "as predicted" if ok else "not as predicted"))
+                 "unsupported outputs (v1.0 definition: output given and wrong)",
+                 "A=%d B=%d C=%d D=%d E=%d" % tuple(uns[v] for v in spec.VIEWS), "", "",
+                 "as predicted" if ok else "not as predicted", FROZEN))
+    uns2 = {v: main["utility"][(v, "default_fill")]["unsupported_correct"]
+            + main["utility"][(v, "default_fill")]["unsupported_wrong"] for v in main["views"]}
+    lucky = {v: main["utility"][(v, "default_fill")]["unsupported_correct"] for v in main["views"]}
+    ok = all(uns2[v] > 0 for v in "ABD") and uns2["C"] == 0 and uns2["E"] == 0
+    rows.append(("S6-corrected", "secondary", "main",
+                 "default-filling outputs with no evidence > 0 in A, B, D; 0 in C, E",
+                 "outputs with no evidence = unsupported-wrong + unsupported-correct (lucky defaults)",
+                 " ".join("%s=%d(lucky %d)" % (v, uns2[v], lucky[v]) for v in spec.VIEWS), "", "",
+                 ("as predicted" if ok else "not as predicted")
+                 + "; v1.0 counted only the wrong ones and credited lucky defaults as correct", CORRECTION))
     for x, y in (("C", "A"), ("C", "B")):
-        seq, pop_seq = [], []
+        seq, cis, pop_seq = [], [], []
         for s in spec.DEP_SEQUENCE:
-            seq.append(acc_diff(runs[s], x, y)[0])
+            e = acc_diff(runs[s], x, y)
+            seq.append(e[0])
+            cis.append(e)
             pop_seq.append(pops[s][x]["bayes_accuracy"] - pops[s][y]["bayes_accuracy"])
         mono = all(a <= b for a, b in zip(seq, seq[1:]))
-        pop_mono = all(a <= b for a, b in zip(pop_seq, pop_seq[1:]))
-        ind = acc_diff(runs["independence"], x, y)[0]
+        lam = ("0.25", "0.50", "0.75", "1")
         rows.append(("S7", "secondary", "dep_025..main", "nb accuracy gain %s - %s shrinks as lambda falls" % (x, y),
-                     "gain at lambda = 0 (independence), 0.25, 0.50, 0.75, 1",
-                     " ".join([f4(ind)] + [f4(g) for g in seq]), "", "",
-                     ("as predicted (monotone in lambda)" if mono else "not monotone in lambda")
-                     + "; exact population gains %s: %s" % ("monotone" if pop_mono else "NOT monotone",
-                                                            " ".join(f4(g) for g in pop_seq))))
+                     "exact population gains (Bayes) at lambda = 0.25, 0.50, 0.75, 1: %s; nb estimates [95%% CI]"
+                     % " ".join(f4(g) for g in pop_seq),
+                     "; ".join("lambda %s: %s [%s, %s]" % (l_, f4(e[0]), f4(e[1]), f4(e[2])) for l_, e in zip(lam, cis)),
+                     "", "",
+                     "frozen rule R3.13 (nb point estimates non-decreasing over lambda = 0.25 to 1): %s. Weak "
+                     "evidence: each step is within about 2 standard errors and at lambda = 0.25 the interval "
+                     "includes 0; the population ordering holds by construction"
+                     % ("met" if mono else "not met"), CORRECTION))
     for s in ("prev_balanced", "prev_skewed"):
         r = runs[s]
         txt = " ".join("%s=%s/%s" % (v, f4(r["point"][(v, "nb")]["accuracy"]), f4(r["point"][(v, "nb")]["macro_recall"]))
                        for v in r["views"])
         rows.append(("S8", "secondary", s, "nb accuracy/macro recall per view (no further prediction)",
-                     "accuracy/macro recall", txt, "", "", "reported"))
+                     "accuracy/macro recall", txt, "", "", "reported", FROZEN))
     txt = " ".join("%s=%s" % (v, f4(pops["main"][v]["mi_bits"])) for v in spec.VIEWS)
     rows.append(("S9", "secondary", "main", "exact population I(band; view) in bits (see population_oracle.csv; "
                  "attacker log-loss in summary_inference.csv / summary_paired.csv)", "mutual information (bits)",
-                 txt, "", "", "reported"))
+                 txt, "", "", "reported", FROZEN))
     return rows
 
 
@@ -288,7 +328,7 @@ def _is_action(item, ans):
 
 
 # ---------------------------------------------------------------- all outputs
-def write_all(out, split, runs, pops, checks, freeze_info, all_ok):
+def write_all(out, split, runs, pops, checks, freeze_info, all_ok, extras=None):
     out = Path(out)
     prim = primary_runs(runs)
 
@@ -333,15 +373,25 @@ def write_all(out, split, runs, pops, checks, freeze_info, all_ok):
         for (v, rd), u in r["utility"].items():
             rows.append([r["scenario"], v, rd, u["action_conveyed"], u["action_total"],
                          f4(Fraction(u["action_conveyed"], u["action_total"])), u["correct"], u["items_total"],
-                         f4(Fraction(u["correct"], u["items_total"])), u["omission"], u["unsupported"]])
+                         f4(Fraction(u["correct"], u["items_total"])), u["omission"], u["unsupported"],
+                         u["supported_correct"], u["supported_wrong"], u["unsupported_correct"], u["unsupported_wrong"],
+                         u["action_conveyed_supported"], f4(Fraction(u["action_conveyed_supported"], u["action_total"]))])
             for it, pi_ in u["per_item"].items():
                 item_rows.append([r["scenario"], v, rd, it, pi_["n"], pi_["action"], pi_["action_conveyed"],
-                                  pi_["correct"], pi_["omission"], pi_["unsupported"]])
+                                  pi_["correct"], pi_["omission"], pi_["unsupported"],
+                                  pi_["supported_correct"], pi_["supported_wrong"], pi_["unsupported_correct"],
+                                  pi_["unsupported_wrong"], pi_["action_conveyed_supported"]])
+    # Columns up to "unsupported" keep their v1.0 meaning (protocol 4.4). The v1_1 columns are the
+    # post-review split: only supported outputs earn action-item credit (review 2.2).
+    v11 = ["supported_correct_v1_1", "supported_wrong_v1_1", "unsupported_correct_v1_1", "unsupported_wrong_v1_1",
+           "action_items_conveyed_supported_v1_1"]
     write_csv(out / "summary_utility.csv", ["scenario", "view", "renderer", "action_items_conveyed", "action_items_total",
                                             "action_items_share", "items_correct", "items_total", "items_share",
-                                            "omissions", "unsupported"], rows)
+                                            "omissions", "unsupported"] + v11 + ["action_items_share_supported_v1_1"],
+              rows)
     write_csv(out / "utility_by_item.csv", ["scenario", "view", "renderer", "item", "n", "action_items",
-                                            "action_items_conveyed", "correct", "omissions", "unsupported"], item_rows)
+                                            "action_items_conveyed", "correct", "omissions", "unsupported"] + v11,
+              item_rows)
 
     rows = []
     for r in prim:
@@ -421,13 +471,20 @@ def write_all(out, split, runs, pops, checks, freeze_info, all_ok):
 
     rows = []
     for s, pop in pops.items():
+        lim = extras[("nb_limits", s)] if extras is not None else {}
         for v, p in pop.items():
+            if v == "baseline":
+                nl = npl = p["bayes_accuracy"]
+            else:
+                nl, npl = lim[v]
             rows.append([s, v, p["n_view_values"], f6(p["bayes_accuracy"]), frac(p["bayes_accuracy"]),
                          f6(p["p_exclusion"]), f6(p["p_determined"]), f6(p["h_band_bits"]),
-                         f6(p["h_band_given_view_bits"]), f6(p["mi_bits"])])
+                         f6(p["h_band_given_view_bits"]), f6(p["mi_bits"]), f6(nl), frac(nl), f6(npl)])
+    # nb_limit (v1.1, review 2.1): nb's exact accuracy with unlimited training data.
     write_csv(out / "population_oracle.csv", ["scenario", "view", "n_view_values", "bayes_accuracy",
                                               "bayes_accuracy_exact", "p_exclusion", "p_determined", "h_band_bits",
-                                              "h_band_given_view_bits", "mi_bits"], rows)
+                                              "h_band_given_view_bits", "mi_bits", "nb_limit", "nb_limit_exact",
+                                              "nb_pair_limit"], rows)
 
     rows = []
     for r in runs.values():
@@ -436,9 +493,9 @@ def write_all(out, split, runs, pops, checks, freeze_info, all_ok):
     write_csv(out / "generator_check.csv", ["scenario", "cell", "specified_p", "observed_count", "n", "abs_z", "ok"],
               rows)
 
-    hyp = hypotheses(runs, pops)
+    hyp = hypotheses(runs, pops, extras)
     write_csv(out / "hypotheses.csv", ["id", "role", "scenario", "statement", "measure", "estimate", "ci_low",
-                                       "ci_high", "outcome"], hyp)
+                                       "ci_high", "outcome", "label"], hyp)
     (out / "worked_cases.md").write_text(worked_cases_md(runs["main"], split), encoding="utf-8")
     write_json(out / "validation.json", checks)
 
@@ -497,7 +554,8 @@ def console(runs, pops, hyp, checks, split):
                                              for v in m["views"]))
     out.append("")
     for h in hyp:
-        out.append("%-4s %-60s %s %s%s -> %s" % (h[0], h[3][:60], h[5], "[%s,%s]" % (h[6], h[7]) if h[6] else "", "", h[8]))
+        out.append("%-12s %-55s %s %s -> %s" % (h[0], h[3][:55], h[5][:70], "[%s,%s]" % (h[6], h[7]) if h[6] else "",
+                                                h[8][:90]))
     out.append("")
     n_ok = sum(c["ok"] for c in checks)
     out.append("Validation: %d/%d checks passed" % (n_ok, len(checks)))

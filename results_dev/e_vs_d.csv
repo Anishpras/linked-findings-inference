@@ -1,0 +1,49 @@
+kind,scenario,seed_run,view_or_comparison,model,bayes_accuracy,mi_bits,nb_limit,accuracy_diff,accuracy_ci_low,accuracy_ci_high,logloss_diff,logloss_ci_low,logloss_ci_high
+exact,independence,,C,,0.400000,0.000000,0.400000,,,,,,
+exact,independence,,D,,0.400000,0.000000,0.400000,,,,,,
+exact,independence,,E,,0.400000,0.000000,0.400000,,,,,,
+exact,dep_025,,C,,0.420717,0.027879,0.418590,,,,,,
+exact,dep_025,,D,,0.415949,0.022137,0.415949,,,,,,
+exact,dep_025,,E,,0.414016,0.019427,0.411011,,,,,,
+exact,dep_050,,C,,0.475768,0.107236,0.471466,,,,,,
+exact,dep_050,,D,,0.462048,0.086114,0.462048,,,,,,
+exact,dep_050,,E,,0.458181,0.076419,0.448617,,,,,,
+exact,dep_075,,C,,0.538193,0.229005,0.531785,,,,,,
+exact,dep_075,,D,,0.516750,0.185938,0.516750,,,,,,
+exact,dep_075,,E,,0.509840,0.167630,0.501647,,,,,,
+exact,main,,C,,0.604169,0.388927,0.595332,,,,,,
+exact,main,,D,,0.575466,0.314771,0.575466,,,,,,
+exact,main,,E,,0.564987,0.289607,0.558177,,,,,,
+exact,prev_balanced,,C,,0.607648,0.411076,0.599033,,,,,,
+exact,prev_balanced,,D,,0.578459,0.333629,0.578459,,,,,,
+exact,prev_balanced,,E,,0.567166,0.309362,0.552695,,,,,,
+exact,prev_skewed,,C,,0.743687,0.282222,0.734233,,,,,,
+exact,prev_skewed,,D,,0.726262,0.224256,0.726262,,,,,,
+exact,prev_skewed,,E,,0.723824,0.202727,0.709527,,,,,,
+exact_variant,main,,C (linked fine releases),,0.604169,0.388927,0.595332,,,,,,
+exact_variant,main,,D,,0.575466,0.314771,0.575466,,,,,,
+exact_variant,main,,D without income_pattern,,0.566691,0.293630,0.566691,,,,,,
+exact_variant,main,,E,,0.564987,0.289607,0.558177,,,,,,
+exact_variant,main,,E plus one item that needs income_pattern,,0.576233,0.310952,0.560010,,,,,,
+exact_variant,main,,E plus one item 'major expense settled in full',,0.579320,0.325195,0.566585,,,,,,
+exact_variant,main,,E plus both,,0.587065,0.345561,0.578316,,,,,,
+exact_variant,main,,E without goal_module,,0.537970,0.221785,0.530521,,,,,,
+exact_variant,main,,baseline,,0.400000,0.000000,0.400000,,,,,,
+seed_run,main,0,E-D,nb,,,,-0.0160,-0.0450,0.0130,0.0935,0.0498,0.1364
+seed_run,main,0,E-D,nb_pair,,,,-0.0240,-0.0540,0.0050,0.0940,0.0499,0.1374
+seed_run,main,0,E-D,oracle,,,,-0.0140,-0.0390,0.0130,0.0447,0.0169,0.0707
+seed_run,main,1,E-D,nb,,,,-0.0170,-0.0470,0.0130,0.0693,0.0265,0.1127
+seed_run,main,1,E-D,nb_pair,,,,-0.0150,-0.0440,0.0150,0.0703,0.0266,0.1139
+seed_run,main,1,E-D,oracle,,,,0.0040,-0.0220,0.0300,0.0272,0.0028,0.0508
+seed_run,main,2,E-D,nb,,,,-0.0440,-0.0750,-0.0140,0.0671,0.0282,0.1073
+seed_run,main,2,E-D,nb_pair,,,,-0.0410,-0.0710,-0.0120,0.0695,0.0310,0.1084
+seed_run,main,2,E-D,oracle,,,,-0.0150,-0.0440,0.0110,0.0327,0.0101,0.0554
+seed_run,main,3,E-D,nb,,,,-0.0350,-0.0620,-0.0070,0.0975,0.0542,0.1445
+seed_run,main,3,E-D,nb_pair,,,,-0.0350,-0.0640,-0.0070,0.0965,0.0520,0.1438
+seed_run,main,3,E-D,oracle,,,,-0.0090,-0.0340,0.0160,0.0306,0.0055,0.0570
+seed_run,main,4,E-D,nb,,,,-0.0280,-0.0600,0.0020,0.0875,0.0421,0.1355
+seed_run,main,4,E-D,nb_pair,,,,-0.0270,-0.0590,0.0040,0.0866,0.0402,0.1344
+seed_run,main,4,E-D,oracle,,,,-0.0320,-0.0580,-0.0060,0.0294,0.0032,0.0549
+seed_run,main,5,E-D,nb,,,,-0.0110,-0.0430,0.0220,0.0881,0.0412,0.1358
+seed_run,main,5,E-D,nb_pair,,,,-0.0180,-0.0510,0.0150,0.0882,0.0409,0.1351
+seed_run,main,5,E-D,oracle,,,,-0.0220,-0.0490,0.0040,0.0366,0.0101,0.0624

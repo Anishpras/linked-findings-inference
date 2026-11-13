@@ -76,20 +76,18 @@ def _integerise(block):
     return rows, den
 
 
-def build(scenario):
-    """Exact tables {view: {view_key: [N_low, N_medium, N_high]}} and the common denominator D."""
+def iter_records(scenario):
+    """Yield (raw record, (N_low, N_medium, N_high)) for every raw record, with P(raw | band) =
+    N_band / D exactly; also returns D through the first element of the generator protocol:
+    use `records(scenario)` for a materialised list and D."""
     dists = generator.distributions(scenario)
-    pc = bool(spec.SCENARIOS[scenario].get("band_field"))
-    view_list = spec.POSITIVE_CONTROL_VIEWS if pc else spec.VIEWS
     blocks, D = [], 1
     for block in _blocks(dists):
         rows, den = _integerise(block)
         blocks.append(rows)
         D *= den
-    tables = OrderedDict((v, {}) for v in view_list)
-    n_records = 0
+    yield D
     for combo in itertools.product(*blocks):
-        n_records += 1
         raw = {}
         nl = nm = nh = 1
         for assign, (a, b, c) in combo:
@@ -97,7 +95,26 @@ def build(scenario):
             nl *= a
             nm *= b
             nh *= c
-        nums = (nl, nm, nh)
+        yield raw, (nl, nm, nh)
+
+
+def records(scenario):
+    it = iter_records(scenario)
+    D = next(it)
+    return D, list(it)
+
+
+def build(scenario):
+    """Exact tables {view: {view_key: [N_low, N_medium, N_high]}} and the common denominator D."""
+    pc = bool(spec.SCENARIOS[scenario].get("band_field"))
+    view_list = spec.POSITIVE_CONTROL_VIEWS if pc else spec.VIEWS
+    it = iter_records(scenario)
+    D = next(it)
+    tables = OrderedDict((v, {}) for v in view_list)
+    n_records = 0
+    for raw, nums in it:
+        n_records += 1
+        nl, nm, nh = nums
         for v in view_list:
             table = tables[v]
             if pc:
@@ -120,6 +137,80 @@ def build(scenario):
     pi = tuple(spec.SCENARIOS[scenario]["pi"][b] for b in spec.BANDS)
     return OrderedDict([("scenario", scenario), ("D", D), ("pi", pi), ("tables", tables),
                         ("n_raw_records", n_records)])
+
+
+def build_custom(scenario, view_fns):
+    """Exact tables for arbitrary views: view_fns maps a name to a function raw -> hashable key.
+    Used for the exploratory E-vs-D variants (v1.1)."""
+    it = iter_records(scenario)
+    D = next(it)
+    tables = OrderedDict((name, {}) for name in view_fns)
+    for raw, (nl, nm, nh) in it:
+        for name, fn in view_fns.items():
+            table = tables[name]
+            key = fn(raw)
+            cell = table.get(key)
+            if cell is None:
+                cell = table[key] = [0, 0, 0]
+            cell[0] += nl
+            cell[1] += nm
+            cell[2] += nh
+    pi = tuple(spec.SCENARIOS[scenario]["pi"][b] for b in spec.BANDS)
+    return OrderedDict([("scenario", scenario), ("D", D), ("pi", pi), ("tables", tables)])
+
+
+def nb_limit(orc, view, pair=False):
+    """Exact accuracy of the nb attacker with unlimited training data (v1.1, review 2.1).
+
+    With infinite training data nb's estimates converge to the true prior pi(b) and the true
+    per-field marginals P(x_f | b), which are read off the exact table by summing over view
+    values. nb then predicts argmax_b pi(b) prod_f P(x_f | b) (ties low, medium, high), and its
+    accuracy is sum_v pi(pred(v)) P(v | pred(v)). With pair=True the schema-linked pair is one
+    joint feature, exactly as in the nb_pair attacker. Integer arithmetic: every marginal is an
+    integer numerator over D, and the common factor D^k is dropped from the comparison.
+    """
+    from . import attacker  # the attacker's own pair rule, so the limit matches nb_pair exactly
+    table = orc["tables"][view]
+    a, A = _pi_int(orc["pi"])
+
+    def feats(key):
+        x = dict(key)
+        if pair:
+            x = attacker.pair_features(x)
+        return sorted(x.items())
+
+    marg = {}
+    for key, cell in table.items():
+        for fv in feats(key):
+            m = marg.get(fv)
+            if m is None:
+                m = marg[fv] = [0, 0, 0]
+            m[0] += cell[0]
+            m[1] += cell[1]
+            m[2] += cell[2]
+    correct = 0
+    for key, cell in table.items():
+        if cell[0] == cell[1] == cell[2] == 0:
+            continue
+        s0, s1, s2 = a
+        for fv in feats(key):
+            m = marg[fv]
+            s0 *= m[0]
+            s1 *= m[1]
+            s2 *= m[2]
+        best = 0
+        if s1 > s0:
+            best = 1
+        if s2 > (s1 if best == 1 else s0):
+            best = 2
+        correct += a[best] * cell[best]
+    return Fraction(correct, A * orc["D"])
+
+
+def nb_limits(scenario):
+    """{view: (nb_limit, nb_pair_limit)} for one scenario (process-pool worker)."""
+    orc = build(scenario)
+    return OrderedDict((v, (nb_limit(orc, v, False), nb_limit(orc, v, True))) for v in orc["tables"])
 
 
 def _pi_int(pi):

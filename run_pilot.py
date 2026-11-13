@@ -30,13 +30,16 @@ from lfi import pipeline, report, spec  # noqa: E402
 
 FREEZE = ROOT / "FREEZE.json"
 DEFAULT_OUT = {"test": "results", "dev": "results_dev"}
-COPY_FOR_REPRO = ["run_pilot.py", "PROTOCOL.md", "README.md", "FREEZE.json", "lfi", "fixtures", "tests"]
+COPY_FOR_REPRO = ["run_pilot.py", "PROTOCOL.md", "README.md", "FREEZE.json", "lfi", "fixtures", "tests",
+                  "results_v1.0", "release_audit", "examples", "docs"]
 
 
 def frozen_files():
+    """Protocol, fixtures and every source file (v1.1 adds the toolkit and its example specs)."""
     files = ["PROTOCOL.md", "run_pilot.py"]
-    for sub, pattern in (("fixtures", "*.json"), ("lfi", "*.py"), ("tests", "*.py")):
-        files += sorted("%s/%s" % (sub, p.name) for p in (ROOT / sub).glob(pattern))
+    for sub, pattern in (("fixtures", "*.json"), ("lfi", "*.py"), ("tests", "*.py"), ("release_audit", "*.py"),
+                         ("examples", "*/*.json"), ("examples", "*/*.csv")):
+        files += sorted(p.relative_to(ROOT).as_posix() for p in (ROOT / sub).glob(pattern))
     return files
 
 

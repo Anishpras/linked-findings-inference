@@ -1,0 +1,8 @@
+field,stage,mi_alone_bits,bayes_alone,mi_loss_if_dropped,bayes_loss_if_dropped,coarsening_mi_loss
+order.basket_size,order,0.0261,0.7000,0.0103,0.0018,two_level: 0.0016
+order.delivery_window,order,0.0164,0.7000,0.0448,0.0119,daypart: 0.0392
+order.substitutions_allowed,order,0.0000,0.7000,0.0000,0.0000,
+picking.bulk_items,picking,0.1424,0.7602,0.1073,0.0462,any: 0.0294
+picking.out_of_stock,picking,0.0000,0.7000,0.0000,0.0000,any: 0.0000
+delivery.doorstep_instruction,delivery,0.0733,0.7492,0.0881,0.0355,attended: 0.0843
+delivery.outcome,delivery,0.0007,0.7000,0.0000,0.0000,

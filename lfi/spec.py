@@ -19,7 +19,7 @@ N_HOUSEHOLDS = 10000                       # raised from 3,000 pre-freeze (PROTO
 SPLIT_SIZES = (("train", 6000), ("dev", 1000), ("test", 3000))
 SCORED_SPLITS = ("dev", "test")
 N_REPLICATES = 5
-FIXTURE_VERSION = "1.0.0"
+FIXTURE_VERSION = "1.1.0"
 
 # ---------------------------------------------------------------- fixed hyperparameters (sections 5-7)
 BANDS = ("low", "medium", "high")          # also the argmax tie-break order

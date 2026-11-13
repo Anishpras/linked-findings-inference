@@ -111,9 +111,22 @@ class Renderers(unittest.TestCase):
 class Attacker(unittest.TestCase):
     def test_unseen_value_is_skipped(self):
         nb = attacker.NaiveBayes([{"f": "a"}, {"f": "a"}, {"f": "b"}], ["low", "low", "high"])
-        post, skipped = nb.posterior({"f": "zzz"})
-        self.assertEqual(skipped, 1)
+        post, skipped, fallbacks = nb.posterior({"f": "zzz"})
+        self.assertEqual((skipped, fallbacks), (1, 0))
         self.assertEqual(post, {b: nb.prior[b] for b in spec.BANDS})
+
+    def test_optional_field_denominator_counts_rows_carrying_the_field(self):  # v1.1, review 2.6
+        nb = attacker.NaiveBayes([{"f": "a", "g": "p"}, {"f": "a"}, {"f": "b", "g": "q"}], ["low", "low", "high"])
+        self.assertEqual(nb.likelihood("g", "p", "low"), (2, 1 + 3))  # one low row carries g; K = 2, +1 slot
+        self.assertEqual(nb.likelihood("f", "a", "low"), (3, 2 + 3))
+
+    def test_nb_pair_falls_back_to_marginals_for_unseen_joint_value(self):  # v1.1, review 2.6
+        rows = [{"id": "r1", "x": {"r1.event_code": "home_minor", "r2.resolution": "settled_in_full"}, "y": "low"},
+                {"id": "r2", "x": {"r1.event_code": "home_major", "r2.resolution": "outstanding"}, "y": "high"},
+                {"id": "s1", "x": {"r1.event_code": "home_minor", "r2.resolution": "outstanding"}}]
+        out = attacker.run(rows)[0]
+        self.assertEqual(out["nb_pair"]["p"], out["nb"]["p"])
+        self.assertEqual((out["nb_pair"]["pair_fallbacks"], out["nb_pair"]["skipped"]), (1, 0))
 
     def test_lookup_threshold(self):
         rows = [{"x": {"f": "a"}, "y": "high"}] * 4 + [{"x": {"f": "b"}, "y": "high"}] * 5
@@ -179,6 +192,12 @@ class Exposure(unittest.TestCase):
                             views.scored_line("s3", {"r2.goal": "none"})]) + b"\n"
         s = exposure.scan(stdin)
         self.assertEqual((s["train_exposed"], s["scored_exposed"], s["exposed_scored_ids"]), (0, 2, ["s1", "s2"]))
+
+    def test_scan_is_structural_not_substring(self):  # v1.1, review 2.5
+        stdin = b"\n".join([views.scored_line("s1", {"r1.broadband_bill": "paid"}),
+                            views.scored_line("s2", {"r1.husband_income": "regular"}),
+                            views.scored_line("s3", {"r2.goal": "LOW"})]) + b"\n"
+        self.assertEqual(exposure.scan(stdin)["scored_exposed"], 0)  # documented scope: literal only
 
 
 if __name__ == "__main__":

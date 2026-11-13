@@ -1,0 +1,19 @@
+seed_run,master_seed,model,comparison,accuracy_diff,accuracy_ci_low,accuracy_ci_high,meets_h2a_criterion,logloss_diff_bits,logloss_ci_low,logloss_ci_high,logloss_ci_excludes_0,correct_D_only,correct_C_only,label
+0,20261113,nb,D-C,-0.0060,-0.0280,0.0160,False,0.0275,0.0052,0.0495,True,61,67,frozen v1.0 (primary seed)
+0,20261113,nb_pair,D-C,-0.0170,-0.0400,0.0060,False,0.0605,0.0312,0.0885,True,64,81,frozen v1.0 (primary seed)
+0,20261113,oracle,D-C,-0.0140,-0.0390,0.0110,False,0.0675,0.0401,0.0943,True,71,85,frozen v1.0 (primary seed)
+1,5436264421729220823,nb,D-C,-0.0030,-0.0250,0.0190,False,0.0666,0.0458,0.0890,True,61,64,"exploratory, post-review (v1.1)"
+1,5436264421729220823,nb_pair,D-C,-0.0250,-0.0490,-0.0030,True,0.0911,0.0660,0.1178,True,61,86,"exploratory, post-review (v1.1)"
+1,5436264421729220823,oracle,D-C,-0.0390,-0.0630,-0.0160,True,0.0957,0.0719,0.1218,True,55,94,"exploratory, post-review (v1.1)"
+2,8126347391164173289,nb,D-C,0.0020,-0.0220,0.0250,False,0.0464,0.0239,0.0676,True,72,70,"exploratory, post-review (v1.1)"
+2,8126347391164173289,nb_pair,D-C,-0.0120,-0.0360,0.0110,False,0.0696,0.0451,0.0951,True,67,79,"exploratory, post-review (v1.1)"
+2,8126347391164173289,oracle,D-C,-0.0160,-0.0420,0.0100,False,0.0752,0.0483,0.1020,True,76,92,"exploratory, post-review (v1.1)"
+3,4503165959672363524,nb,D-C,-0.0030,-0.0240,0.0190,False,0.0397,0.0171,0.0619,True,60,63,"exploratory, post-review (v1.1)"
+3,4503165959672363524,nb_pair,D-C,-0.0040,-0.0270,0.0200,False,0.0511,0.0248,0.0783,True,69,73,"exploratory, post-review (v1.1)"
+3,4503165959672363524,oracle,D-C,-0.0190,-0.0420,0.0050,False,0.0560,0.0318,0.0809,True,61,80,"exploratory, post-review (v1.1)"
+4,6678953503651017500,nb,D-C,-0.0120,-0.0350,0.0100,False,0.0341,0.0090,0.0591,True,66,78,"exploratory, post-review (v1.1)"
+4,6678953503651017500,nb_pair,D-C,-0.0210,-0.0440,0.0020,False,0.0642,0.0381,0.0916,True,62,83,"exploratory, post-review (v1.1)"
+4,6678953503651017500,oracle,D-C,-0.0150,-0.0390,0.0080,False,0.0718,0.0482,0.0968,True,60,75,"exploratory, post-review (v1.1)"
+5,11914072835334799033,nb,D-C,-0.0160,-0.0420,0.0090,False,0.0313,0.0088,0.0551,True,72,88,"exploratory, post-review (v1.1)"
+5,11914072835334799033,nb_pair,D-C,-0.0140,-0.0400,0.0130,False,0.0496,0.0243,0.0763,True,77,91,"exploratory, post-review (v1.1)"
+5,11914072835334799033,oracle,D-C,-0.0180,-0.0430,0.0080,False,0.0519,0.0271,0.0778,True,76,94,"exploratory, post-review (v1.1)"

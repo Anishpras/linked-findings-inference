@@ -123,3 +123,39 @@ class NbWithoutUnseenValueRule(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class NbDenominatorRevertedToV10(unittest.TestCase):
+    """v1.1: the optional-field denominator. Reverting it to the v1.0 rule must be detected."""
+    FIXED = "        return (seen[value][band] + ALPHA, self.field_counts[field][band] + ALPHA * (len(seen) + 1))\n"
+    V10 = "        return (seen[value][band] + ALPHA, self.class_counts[band] + ALPHA * (len(seen) + 1))\n"
+
+    def test_reverted_denominator_is_detected(self):
+        src = (ROOT / "lfi" / "attacker.py").read_text(encoding="utf-8")
+        self.assertEqual(src.count(self.FIXED), 1)
+        tmp = Path(tempfile.mkdtemp(prefix="lfi-mutant-"))
+        try:
+            mutant = tmp / "attacker.py"
+            mutant.write_text(src.replace(self.FIXED, self.V10), encoding="utf-8")
+            res = validate.check_attacker_known_answers(load("attacker_known_answers.json"), mutant)
+            self.assertFalse(res[0]["ok"])
+        finally:
+            shutil.rmtree(str(tmp))
+
+
+class StaticCheckBypassFromReview(unittest.TestCase):
+    """v1.1: the two lines the reviewer used to pass check 9 (review 2.4) are now caught."""
+
+    def test_reviewer_bypass_is_detected(self):
+        src = (ROOT / "lfi" / "attacker.py").read_text(encoding="utf-8")
+        mut = src.replace("def main():\n", "def main():\n    leak = json.codecs.open('/tmp/x').read()\n"
+                          "    leak2 = getattr(sys, 'mod' + 'ules')\n", 1)
+        self.assertNotEqual(mut, src)
+        tmp = Path(tempfile.mkdtemp(prefix="lfi-mutant-"))
+        try:
+            p = tmp / "attacker.py"
+            p.write_text(mut, encoding="utf-8")
+            self.assertFalse(validate.check_attacker_static(p)[0]["ok"])
+            self.assertTrue(validate.check_attacker_static(ROOT / "lfi" / "attacker.py")[0]["ok"])
+        finally:
+            shutil.rmtree(str(tmp))

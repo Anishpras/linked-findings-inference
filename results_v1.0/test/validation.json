@@ -1,0 +1,807 @@
+[
+  {
+    "check": "x_unit_and_mutation_tests",
+    "ok": true,
+    "detail": "Ran 32 tests | OK"
+  },
+  {
+    "check": "1_hand_example:H1",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "1_hand_example:H2",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "1_hand_example:H3",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "1_hand_example:H4",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "1_hand_example:H5",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "1_hand_example:H6",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "1b_attacker_known_answers",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "9_attacker_source_reads_stdin_only",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "9_isolation_probe",
+    "ok": true,
+    "detail": "cwd empty, env keys ['LC_CTYPE', '__CF_USER_TEXT_ENCODING'] (interpreter/OS-injected only), -I flags set"
+  },
+  {
+    "check": "8_oracle_sums_to_one:independence",
+    "ok": true,
+    "detail": "P(view|band) sums to exactly 1 for every band"
+  },
+  {
+    "check": "8x_oracle_information_monotone:independence",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8_oracle_sums_to_one:dep_025",
+    "ok": true,
+    "detail": "P(view|band) sums to exactly 1 for every band"
+  },
+  {
+    "check": "8x_oracle_information_monotone:dep_025",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8_oracle_sums_to_one:dep_050",
+    "ok": true,
+    "detail": "P(view|band) sums to exactly 1 for every band"
+  },
+  {
+    "check": "8x_oracle_information_monotone:dep_050",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8_oracle_sums_to_one:dep_075",
+    "ok": true,
+    "detail": "P(view|band) sums to exactly 1 for every band"
+  },
+  {
+    "check": "8x_oracle_information_monotone:dep_075",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8_oracle_sums_to_one:main",
+    "ok": true,
+    "detail": "P(view|band) sums to exactly 1 for every band"
+  },
+  {
+    "check": "8x_oracle_information_monotone:main",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8_oracle_sums_to_one:prev_balanced",
+    "ok": true,
+    "detail": "P(view|band) sums to exactly 1 for every band"
+  },
+  {
+    "check": "8x_oracle_information_monotone:prev_balanced",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8_oracle_sums_to_one:prev_skewed",
+    "ok": true,
+    "detail": "P(view|band) sums to exactly 1 for every band"
+  },
+  {
+    "check": "8x_oracle_information_monotone:prev_skewed",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8_oracle_sums_to_one:positive_control",
+    "ok": true,
+    "detail": "P(view|band) sums to exactly 1 for every band"
+  },
+  {
+    "check": "8x_oracle_information_monotone:positive_control",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "1_hand_example_exclusions:H1",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "1_hand_example_exclusions:H2",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "1_hand_example_exclusions:H3",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "1_hand_example_exclusions:H4",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "1_hand_example_exclusions:H5",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "1_hand_example_exclusions:H6",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "3_deterministic_regeneration:independence",
+    "ok": true,
+    "detail": "households sha256[:16]=d11fa60d1a24ab3c"
+  },
+  {
+    "check": "2_split_isolation:independence",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "4_band_removed:independence",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:independence",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:independence",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:independence",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:independence",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:independence",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:independence",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "3_deterministic_regeneration:dep_025",
+    "ok": true,
+    "detail": "households sha256[:16]=4bfaa52486e82573"
+  },
+  {
+    "check": "2_split_isolation:dep_025",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "4_band_removed:dep_025",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:dep_025",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:dep_025",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:dep_025",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:dep_025",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:dep_025",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:dep_025",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "3_deterministic_regeneration:dep_050",
+    "ok": true,
+    "detail": "households sha256[:16]=71ebdad6fecb8f40"
+  },
+  {
+    "check": "2_split_isolation:dep_050",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "4_band_removed:dep_050",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:dep_050",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:dep_050",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:dep_050",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:dep_050",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:dep_050",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:dep_050",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "3_deterministic_regeneration:dep_075",
+    "ok": true,
+    "detail": "households sha256[:16]=f751a1286ee9def1"
+  },
+  {
+    "check": "2_split_isolation:dep_075",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "4_band_removed:dep_075",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:dep_075",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:dep_075",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:dep_075",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:dep_075",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:dep_075",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:dep_075",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "3_deterministic_regeneration:main",
+    "ok": true,
+    "detail": "households sha256[:16]=c107fd6f191488b3"
+  },
+  {
+    "check": "2_split_isolation:main",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "4_band_removed:main",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:main",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "8_hard_zero_in_data:main",
+    "ok": true,
+    "detail": "0 violations"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:main",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:main",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:main",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:main",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:main",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "3_deterministic_regeneration:prev_balanced",
+    "ok": true,
+    "detail": "households sha256[:16]=7d1e01649fda16e0"
+  },
+  {
+    "check": "2_split_isolation:prev_balanced",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "4_band_removed:prev_balanced",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:prev_balanced",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "8_hard_zero_in_data:prev_balanced",
+    "ok": true,
+    "detail": "0 violations"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:prev_balanced",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:prev_balanced",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:prev_balanced",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:prev_balanced",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:prev_balanced",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "3_deterministic_regeneration:prev_skewed",
+    "ok": true,
+    "detail": "households sha256[:16]=2ea8eb61aafe1b1a"
+  },
+  {
+    "check": "2_split_isolation:prev_skewed",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "4_band_removed:prev_skewed",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:prev_skewed",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "8_hard_zero_in_data:prev_skewed",
+    "ok": true,
+    "detail": "0 violations"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:prev_skewed",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:prev_skewed",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:prev_skewed",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:prev_skewed",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:prev_skewed",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "3_deterministic_regeneration:positive_control",
+    "ok": true,
+    "detail": "households sha256[:16]=0963711407e7c58b"
+  },
+  {
+    "check": "2_split_isolation:positive_control",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:positive_control",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "8_hard_zero_in_data:positive_control",
+    "ok": true,
+    "detail": "0 violations"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:positive_control",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:positive_control",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:positive_control",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:positive_control",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:positive_control",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "3_deterministic_regeneration:main_rep1",
+    "ok": true,
+    "detail": "households sha256[:16]=06b5d3b62043a8d3"
+  },
+  {
+    "check": "2_split_isolation:main_rep1",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "4_band_removed:main_rep1",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:main_rep1",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "8_hard_zero_in_data:main_rep1",
+    "ok": true,
+    "detail": "0 violations"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:main_rep1",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:main_rep1",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:main_rep1",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:main_rep1",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:main_rep1",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "3_deterministic_regeneration:main_rep2",
+    "ok": true,
+    "detail": "households sha256[:16]=c49bd9ed77ae42b4"
+  },
+  {
+    "check": "2_split_isolation:main_rep2",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "4_band_removed:main_rep2",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:main_rep2",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "8_hard_zero_in_data:main_rep2",
+    "ok": true,
+    "detail": "0 violations"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:main_rep2",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:main_rep2",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:main_rep2",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:main_rep2",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:main_rep2",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "3_deterministic_regeneration:main_rep3",
+    "ok": true,
+    "detail": "households sha256[:16]=da19ddfb24556fd1"
+  },
+  {
+    "check": "2_split_isolation:main_rep3",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "4_band_removed:main_rep3",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:main_rep3",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "8_hard_zero_in_data:main_rep3",
+    "ok": true,
+    "detail": "0 violations"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:main_rep3",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:main_rep3",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:main_rep3",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:main_rep3",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:main_rep3",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "3_deterministic_regeneration:main_rep4",
+    "ok": true,
+    "detail": "households sha256[:16]=b830203fc0627d78"
+  },
+  {
+    "check": "2_split_isolation:main_rep4",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "4_band_removed:main_rep4",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:main_rep4",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "8_hard_zero_in_data:main_rep4",
+    "ok": true,
+    "detail": "0 violations"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:main_rep4",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:main_rep4",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:main_rep4",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:main_rep4",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:main_rep4",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "3_deterministic_regeneration:main_rep5",
+    "ok": true,
+    "detail": "households sha256[:16]=7424a0c99b4ed332"
+  },
+  {
+    "check": "2_split_isolation:main_rep5",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "4_band_removed:main_rep5",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "7_generator_matches_spec:main_rep5",
+    "ok": true,
+    "detail": "85 cells, 0 outside 4 SE + 1/n"
+  },
+  {
+    "check": "8_hard_zero_in_data:main_rep5",
+    "ok": true,
+    "detail": "0 violations"
+  },
+  {
+    "check": "10_attacker_outputs_identical_across_two_isolated_runs:main_rep5",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "5_attacker_returned_every_scored_row_in_order:main_rep5",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "8x_oracle_covers_data:main_rep5",
+    "ok": true,
+    "detail": "views outside support 0; true band with P(view|band)=0: 0"
+  },
+  {
+    "check": "x_strict_renderer_never_unsupported:main_rep5",
+    "ok": true,
+    "detail": "0 unsupported strict outputs"
+  },
+  {
+    "check": "5_denominators:main_rep5",
+    "ok": true,
+    "detail": "3000 households x 9 items"
+  },
+  {
+    "check": "6_control_independence",
+    "ok": true,
+    "detail": "25/25 pass"
+  },
+  {
+    "check": "6_control_positive_control_nb_accuracy",
+    "ok": true,
+    "detail": "4/4 pass"
+  },
+  {
+    "check": "6_control_positive_control_exposure",
+    "ok": true,
+    "detail": "4/4 pass"
+  },
+  {
+    "check": "6_control_no_exposure",
+    "ok": true,
+    "detail": "60/60 pass"
+  }
+]

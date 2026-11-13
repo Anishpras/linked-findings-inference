@@ -1,0 +1,16 @@
+label,items,mi_bits,bayes_accuracy,utility
+"order.substitutions_allowed, picking.out_of_stock",False,0.0000,0.7000,0.1011
+"order.substitutions_allowed, picking.out_of_stock, delivery.outcome",False,0.0007,0.7000,0.1713
+"order.delivery_window(daypart), order.substitutions_allowed, picking.out_of_stock",False,0.0016,0.7000,0.2864
+"order.delivery_window(daypart), order.substitutions_allowed, picking.out_of_stock, delivery.outcome",False,0.0024,0.7000,0.3567
+"order.delivery_window(daypart), order.substitutions_allowed, picking.out_of_stock, delivery.doorstep_instruction(attended)",False,0.0060,0.7000,0.3964
+"order.delivery_window(daypart), order.substitutions_allowed, picking.out_of_stock, delivery.doorstep_instruction(attended), delivery.outcome",False,0.0065,0.7000,0.4667
+"order.delivery_window, order.substitutions_allowed, picking.out_of_stock",False,0.0164,0.7000,0.5825
+"order.delivery_window, order.substitutions_allowed, picking.out_of_stock, delivery.outcome",False,0.0174,0.7000,0.6527
+"order.delivery_window, order.substitutions_allowed, picking.out_of_stock, delivery.doorstep_instruction(attended)",False,0.0214,0.7000,0.6925
+"order.delivery_window, order.substitutions_allowed, picking.out_of_stock, delivery.doorstep_instruction(attended), delivery.outcome",False,0.0221,0.7000,0.7627
+"order.basket_size, order.delivery_window, order.substitutions_allowed, picking.out_of_stock, delivery.outcome",False,0.0429,0.7040,0.7637
+"order.basket_size, order.delivery_window, order.substitutions_allowed, picking.out_of_stock, delivery.doorstep_instruction(attended)",False,0.0468,0.7052,0.8034
+"order.basket_size, order.delivery_window, order.substitutions_allowed, picking.out_of_stock, delivery.doorstep_instruction(attended), delivery.outcome",False,0.0475,0.7052,0.8737
+"order.basket_size, order.delivery_window, order.substitutions_allowed, picking.out_of_stock, delivery.doorstep_instruction, delivery.outcome",False,0.1492,0.7540,0.9445
+items only,True,0.1843,0.7692,1.0000

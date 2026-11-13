@@ -1,7 +1,7 @@
 {
   "check": "10_reproducibility_two_full_runs_in_temp_dirs",
-  "split": "dev",
-  "python_version": "3.9.6",
+  "split": "test",
+  "python_version": "3.13.7",
   "files_compared": 67,
   "exit_codes": [
     0,
@@ -11,10 +11,8 @@
   "differing_files": [],
   "committed_manifest_found": true,
   "committed_manifest_files": 66,
-  "matches_committed_manifest": false,
-  "files_differing_from_committed_manifest": [
-    "results_dev/run_info.json"
-  ],
+  "matches_committed_manifest": true,
+  "files_differing_from_committed_manifest": [],
   "files_missing_from_committed_manifest": [],
-  "ok": false
+  "ok": true
 }

@@ -1,0 +1,150 @@
+{
+  "command": "python3 run_pilot.py --split dev",
+  "scored_split": "dev",
+  "python_version": "3.13.7",
+  "python_implementation": "CPython",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "master_seed": 20261113,
+  "scenario_seeds": {
+    "independence": {
+      "generate": 16899773637268181148,
+      "split": 13885244223794810527,
+      "ids": 9040569307913453838,
+      "attacker_order": 4188815057220015742,
+      "bootstrap": 4004253669265101880
+    },
+    "dep_025": {
+      "generate": 9117193679431342736,
+      "split": 5093431130024476021,
+      "ids": 11615558951422021480,
+      "attacker_order": 8423407427014268257,
+      "bootstrap": 1704507985357389511
+    },
+    "dep_050": {
+      "generate": 16817261889686087021,
+      "split": 4357610808067903013,
+      "ids": 973229555447904527,
+      "attacker_order": 5387541432479429448,
+      "bootstrap": 11883694027063446391
+    },
+    "dep_075": {
+      "generate": 9631395336820193232,
+      "split": 8258382557855887260,
+      "ids": 13811590110862354770,
+      "attacker_order": 9665774770378693897,
+      "bootstrap": 2562557635201806702
+    },
+    "main": {
+      "generate": 15022694405189241642,
+      "split": 8375744105605725766,
+      "ids": 1294493778836972205,
+      "attacker_order": 9126730627393302226,
+      "bootstrap": 6492313747306727500
+    },
+    "prev_balanced": {
+      "generate": 614326058811864994,
+      "split": 2537307003760652789,
+      "ids": 2638622308920376690,
+      "attacker_order": 4274439193068124144,
+      "bootstrap": 13924462996829767361
+    },
+    "prev_skewed": {
+      "generate": 11126805492570626534,
+      "split": 11838989780783204620,
+      "ids": 9853513853965096435,
+      "attacker_order": 15597492280492181003,
+      "bootstrap": 6299606342384555877
+    },
+    "positive_control": {
+      "generate": 4164722240738237129,
+      "split": 2975843251936727802,
+      "ids": 13689061111820046260,
+      "attacker_order": 15031637883125345812,
+      "bootstrap": 4411961557015263682
+    },
+    "main_rep1": {
+      "generate": 735315645679849609,
+      "split": 5465524144495255998,
+      "ids": 2964838792836431557,
+      "attacker_order": 8419457303027428401,
+      "bootstrap": 4686411142064703385
+    },
+    "main_rep2": {
+      "generate": 11102184695668510066,
+      "split": 9208891208594167941,
+      "ids": 17051278647540042181,
+      "attacker_order": 4170982054295312473,
+      "bootstrap": 5164877413227900689
+    },
+    "main_rep3": {
+      "generate": 4516273095602342212,
+      "split": 1000950676988001372,
+      "ids": 1019659657320552856,
+      "attacker_order": 16368396911515326762,
+      "bootstrap": 15843379605243832547
+    },
+    "main_rep4": {
+      "generate": 12356192966079816317,
+      "split": 14358198493230313526,
+      "ids": 2651100495025762612,
+      "attacker_order": 2718480070057233511,
+      "bootstrap": 11736567618197998742
+    },
+    "main_rep5": {
+      "generate": 8889799655406335132,
+      "split": 15914399035926925431,
+      "ids": 2713151345331276984,
+      "attacker_order": 1532062173600430535,
+      "bootstrap": 3496313291210683783
+    }
+  },
+  "replicate_master_seeds": {
+    "main_rep1": 5436264421729220823,
+    "main_rep2": 8126347391164173289,
+    "main_rep3": 4503165959672363524,
+    "main_rep4": 6678953503651017500,
+    "main_rep5": 11914072835334799033
+  },
+  "sizes": {
+    "households_per_scenario": 10000,
+    "splits": {
+      "train": 6000,
+      "dev": 1000,
+      "test": 3000
+    }
+  },
+  "n_bootstrap": 2000,
+  "fixture_version": "1.0.0",
+  "sha256": {
+    "PROTOCOL.md": "e0a92d60c0e63228ee95777f921881c3f1d4256409a84165bc5751ef381efd85",
+    "run_pilot.py": "02e70e08501bea8ea5a1dcbb44ea60b012578f768329aa375abf631b5ac94b67",
+    "fixtures/attacker_known_answers.json": "7c7e9900a841fc37558b75dee9981c9099bf9975fad6140d42f0b44679e478f0",
+    "fixtures/hand_examples.json": "8a492caaf2b4a4f57eb14072547aa42a43319a69503b355d2b4b645587ee7cc7",
+    "lfi/__init__.py": "b3590714ac0e77395ceb1b92515aff69f4c171ced653e68ae6845fda818e6b08",
+    "lfi/attacker.py": "18ba2ed7c482b407256805cd50a2d9fc733ac32a7be3f8c2ca03d8f3010f8eed",
+    "lfi/checklist.py": "8f904dc9ac3e4cfd6b0e3b247473665587df33966d7c8fc15c0791d1c0c0d31a",
+    "lfi/exposure.py": "1b3a8e48a72166a014f278f09afa54fa6d39797a13aebf4b9e41378c6d9a881f",
+    "lfi/generator.py": "f643662d276b1eabab6a5d7015338685016dd05c42b0a91f72fa4bdb75f473fd",
+    "lfi/isolate.py": "d934900f8de5ea40808db03190e4e8b3f23a6868d5c3139d2aa241a4c13571bc",
+    "lfi/metrics.py": "e519bbcb2210116bcbad98083fdc30cc989679af667747d02f24a9b3d8d870d9",
+    "lfi/oracle.py": "1643281788f1b18be8889c267d42c611f6535405b7880a75498b983d641bb6e3",
+    "lfi/pipeline.py": "78aa1a04e24cf5f47c285bf94a5cc5b4659291ad514d5eb682ebb1d4f2d16a1f",
+    "lfi/probe.py": "e8a26552b1543622bbec191c6e72721fd2a635264a4907cf56b4f83333d39ce0",
+    "lfi/report.py": "9ed3879d60c0f396636b1d2447b16c744013aa475a32f92ffac5a550a748623f",
+    "lfi/spec.py": "6477b3c99eb334a550f9754b3d01d75e3503cf2e8b6b041577b99cf416bb1e0e",
+    "lfi/validate.py": "2f687766c02a5541ddeabf9ab547c5b4036426aa5da96602eafba1262b64ec29",
+    "lfi/views.py": "ef780ff4e7fa31098c31af774d05624a2048abbcc936543589aa63b9c0a37115",
+    "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests/test_mutations.py": "870a151f93a13eef6f902fd2c1d8962b9452f77cfc354ea962e57dd2e1497edd",
+    "tests/test_units.py": "47d5f12a52bfa987f10d83da85f35735f671de3020e8bc47d4fba7e68f7cd810"
+  },
+  "freeze": {
+    "frozen": false,
+    "matches": false,
+    "label": null
+  },
+  "validation_all_ok": true,
+  "n_checks": 161,
+  "n_failed": 0,
+  "attacker_isolation": "per call: script copied to its own fresh temp dir; working directory a second fresh, empty temp dir; `python3 -I <script>`; env={}; input on stdin only; each view run twice in independent processes. Process-level isolation, not an OS sandbox."
+}

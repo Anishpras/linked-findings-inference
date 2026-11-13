@@ -15,8 +15,11 @@ from fractions import Fraction
 from . import checklist, exposure, generator, isolate, oracle, spec, views
 
 ALLOWED_ATTACKER_IMPORTS = {"json", "sys", "fractions"}
-FORBIDDEN_NAMES = {"open", "eval", "exec", "compile", "__import__", "input", "globals", "locals", "vars"}
-FORBIDDEN_ATTRS = {"argv", "environ", "path", "modules", "getenv", "system", "popen"}
+FORBIDDEN_NAMES = {"open", "eval", "exec", "compile", "__import__", "input", "globals", "locals", "vars",
+                   "getattr", "setattr", "delattr", "__builtins__", "breakpoint", "memoryview"}
+FORBIDDEN_ATTRS = {"argv", "environ", "path", "modules", "getenv", "system", "popen", "open", "codecs",
+                   "__dict__", "__globals__", "__builtins__", "__class__", "__subclasses__", "__code__",
+                   "loader", "spec_from_file_location", "import_module"}
 # Variables a child may see although it is started with env={}: LC_CTYPE is set by the
 # interpreter's own locale coercion (PEP 538); __CF_USER_TEXT_ENCODING is injected by macOS.
 INTERPRETER_INJECTED_ENV = {"LC_CTYPE", "__CF_USER_TEXT_ENCODING"}
@@ -70,28 +73,31 @@ def check_hand_exclusions(fixture, main_oracle):
 
 
 # ---------------------------------------------------------------- check 1b: attacker known answers
-def known_answer_stdin(fixture):
-    lines = [views.training_line("R%02d" % i, r["x"], r["y"]) for i, r in enumerate(fixture["train"])]
-    lines += [views.scored_line(s["id"], s["x"]) for s in fixture["scored"]]
+def known_answer_stdin(dataset):
+    lines = [views.training_line("R%02d" % i, r["x"], r["y"]) for i, r in enumerate(dataset["train"])]
+    lines += [views.scored_line(s["id"], s["x"]) for s in dataset["scored"]]
     return b"\n".join(lines) + b"\n"
 
 
 def check_attacker_known_answers(fixture, script_path):
-    try:
-        raw = isolate.run_isolated(script_path, known_answer_stdin(fixture))
-        rows = [json.loads(line) for line in raw.decode("ascii").splitlines()]
-    except Exception as exc:  # a crash is a failure, not an error in the harness
-        return [result("1b_attacker_known_answers", False, "attacker failed: %s" % str(exc)[:300])]
+    """Run the attacker on each hand-computed dataset and compare every expected value exactly
+    (probabilities as float(Fraction), which is what the attacker emits)."""
     problems = []
-    if [r["id"] for r in rows] != [s["id"] for s in fixture["scored"]]:
-        problems.append("row ids/order differ")
-    for s, r in zip(fixture["scored"], rows):
-        for attacker, exp in s["expected"].items():
-            got = r.get(attacker, {})
-            for k, v in exp.items():
-                want = [float(Fraction(p)) for p in v] if k == "p" else v
-                if got.get(k) != want:
-                    problems.append("%s %s %s: got %s want %s" % (s["id"], attacker, k, got.get(k), want))
+    for ds in fixture["datasets"]:
+        try:
+            raw = isolate.run_isolated(script_path, known_answer_stdin(ds))
+            rows = [json.loads(line) for line in raw.decode("ascii").splitlines()]
+        except Exception as exc:  # a crash is a failure, not an error in the harness
+            return [result("1b_attacker_known_answers", False, "attacker failed: %s" % str(exc)[:300])]
+        if [r["id"] for r in rows] != [s["id"] for s in ds["scored"]]:
+            problems.append("%s: row ids/order differ" % ds["name"])
+        for s, r in zip(ds["scored"], rows):
+            for attacker, exp in s["expected"].items():
+                got = r.get(attacker, {})
+                for k, v in exp.items():
+                    want = [float(Fraction(p)) for p in v] if k == "p" else v
+                    if got.get(k) != want:
+                        problems.append("%s %s %s %s: got %s want %s" % (ds["name"], s["id"], attacker, k, got.get(k), want))
     return [result("1b_attacker_known_answers", not problems, "; ".join(problems[:6]))]
 
 
@@ -263,6 +269,16 @@ def check_oracle_support(run_key, n_out_of_support, n_true_band_zero):
 
 # ---------------------------------------------------------------- check 9: isolation
 def check_attacker_static(script_path):
+    """Static audit of the SHIPPED attacker script only (v1.1 wording, review 2.4).
+
+    It reads the source of lfi/attacker.py and fails on imports outside json/sys/fractions and on
+    a deny-list of names and attributes (file, environment, argv, reflection). It is a code
+    review aid for this one script, not a confinement mechanism: a replaced attacker could reach
+    the file system by routes a deny-list does not anticipate, and the launcher is process-level
+    isolation, not an OS sandbox. Band-bearing files are written only after every attacker
+    process has finished (pipeline.run), which removes the obvious route, but nothing stops a
+    hostile process from searching the disk for other files.
+    """
     src = open(str(script_path), encoding="utf-8").read()
     tree = ast.parse(src)
     problems = []
@@ -290,7 +306,8 @@ def check_attacker_static(script_path):
                        ("SCHEMA_PAIRS", spec.SCHEMA_PAIRS)):
         if consts.get(name) != want:
             problems.append("%s=%r differs from spec %r" % (name, consts.get(name), want))
-    return [result("9_attacker_source_reads_stdin_only", not problems, "; ".join(problems))]
+    return [result("9_attacker_source_reads_stdin_only", not problems,
+                   "; ".join(problems) or "audits the shipped lfi/attacker.py only; not a sandbox")]
 
 
 def check_isolation_probe(probe_path, project_root):

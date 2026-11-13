@@ -1,0 +1,29 @@
+label,items,mi_bits,bayes_accuracy,utility
+"r1.contact_channel, r2.document_status",False,0.0000,0.4000,0.3533
+"r1.event_code(type), r1.contact_channel, r2.resolution(coarse), r2.document_status",False,0.0370,0.4157,0.3770
+"r1.event_code, r1.contact_channel, r2.resolution(coarse), r2.document_status",False,0.0427,0.4200,0.3932
+"r1.essential_share(coarse), r1.contact_channel, r2.document_status",False,0.0538,0.4425,0.4362
+"r1.event_code(type), r1.contact_channel, r2.resolution, r2.document_status",False,0.0629,0.4318,0.4536
+"r1.payment_flag(any), r1.contact_channel, r2.document_status",False,0.0815,0.4475,0.4566
+"r1.contact_channel, r2.payment_flag, r2.document_status",False,0.0846,0.4450,0.4994
+"r1.payment_flag, r1.contact_channel, r2.document_status",False,0.0850,0.4475,0.5191
+"r1.contact_channel, r2.goal, r2.document_status",False,0.0914,0.4650,0.5456
+"r1.event_code, r1.payment_flag, r1.contact_channel, r2.resolution(coarse), r2.document_status",False,0.1237,0.4675,0.5590
+"r1.event_code(type), r1.contact_channel, r2.resolution(coarse), r2.goal, r2.document_status",False,0.1247,0.4788,0.5693
+"r1.event_code, r1.contact_channel, r2.resolution(coarse), r2.goal, r2.document_status",False,0.1298,0.4836,0.5855
+"r1.essential_share(coarse), r1.payment_flag, r1.contact_channel, r2.document_status",False,0.1333,0.4816,0.6020
+"r1.essential_share(coarse), r1.contact_channel, r2.goal, r2.document_status",False,0.1394,0.4868,0.6285
+"r1.event_code(type), r1.contact_channel, r2.resolution, r2.goal, r2.document_status",False,0.1475,0.4932,0.6459
+"r1.payment_flag(any), r1.contact_channel, r2.goal, r2.document_status",False,0.1636,0.5018,0.6489
+"r1.contact_channel, r2.payment_flag, r2.goal, r2.document_status",False,0.1667,0.4981,0.6917
+"r1.payment_flag, r1.contact_channel, r2.goal, r2.document_status",False,0.1668,0.5021,0.7114
+"r1.essential_share(coarse), r1.event_code(type), r1.contact_channel, r2.resolution, r2.goal, r2.document_status",False,0.1923,0.5178,0.7288
+"r1.event_code(type), r1.payment_flag, r1.contact_channel, r2.resolution(coarse), r2.goal, r2.document_status",False,0.1970,0.5194,0.7351
+"r1.event_code, r1.payment_flag, r1.contact_channel, r2.resolution(coarse), r2.goal, r2.document_status",False,0.2018,0.5207,0.7513
+"r1.essential_share(coarse), r1.payment_flag, r1.contact_channel, r2.goal, r2.document_status",False,0.2103,0.5335,0.7943
+"r1.event_code(type), r1.payment_flag, r1.contact_channel, r2.resolution, r2.goal, r2.document_status",False,0.2178,0.5289,0.8117
+"r1.essential_share(coarse), r1.event_code(type), r1.payment_flag, r1.contact_channel, r2.resolution(coarse), r2.goal, r2.document_status",False,0.2388,0.5458,0.8180
+"r1.essential_share(coarse), r1.event_code, r1.payment_flag, r1.contact_channel, r2.resolution(coarse), r2.goal, r2.document_status",False,0.2433,0.5475,0.8342
+"r1.essential_share(coarse), r1.event_code(type), r1.payment_flag, r1.contact_channel, r2.resolution, r2.goal, r2.document_status",False,0.2585,0.5535,0.8946
+"r1.event_code(type), r1.payment_flag, r1.contact_channel, r2.resolution, r2.payment_flag, r2.goal, r2.document_status",False,0.2818,0.5612,0.9009
+items only,True,0.2896,0.5650,1.0000

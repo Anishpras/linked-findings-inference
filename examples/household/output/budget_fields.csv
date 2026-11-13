@@ -1,0 +1,10 @@
+field,stage,mi_alone_bits,bayes_alone,mi_loss_if_dropped,bayes_loss_if_dropped,coarsening_mi_loss
+r1.income_pattern,r1,0.0318,0.4275,0.0192,0.0083,
+r1.essential_share,r1,0.0865,0.4650,0.0554,0.0254,coarse: 0.0205
+r1.event_code,r1,0.0000,0.4000,0.0281,0.0088,type: 0.0281
+r1.payment_flag,r1,0.0850,0.4475,0.0544,0.0229,any: 0.0025
+r1.contact_channel,r1,0.0000,0.4000,0.0000,0.0000,
+r2.resolution,r2,0.0629,0.4318,0.0697,0.0270,coarse: 0.0412
+r2.payment_flag,r2,0.0846,0.4450,0.0545,0.0224,any: 0.0041
+r2.goal,r2,0.0914,0.4650,0.0587,0.0265,
+r2.document_status,r2,0.0000,0.4000,0.0000,0.0000,

@@ -1,0 +1,17 @@
+field_a,field_b,mi_pair_bits,synergy_bits,bayes_pair,p_exclusion,exclusion_only_when_linked
+order.delivery_window,delivery.doorstep_instruction,0.1274,0.0378,0.7492,0.0330,True
+order.delivery_window,delivery.outcome,0.0174,0.0003,0.7000,0.0000,False
+order.substitutions_allowed,delivery.outcome,0.0007,0.0000,0.7000,0.0000,False
+picking.out_of_stock,delivery.outcome,0.0007,0.0000,0.7000,0.0000,False
+order.basket_size,picking.out_of_stock,0.0261,0.0000,0.7000,0.0000,False
+order.substitutions_allowed,delivery.doorstep_instruction,0.0733,0.0000,0.7492,0.0000,False
+order.substitutions_allowed,picking.out_of_stock,0.0000,0.0000,0.7000,0.0000,False
+order.delivery_window,picking.out_of_stock,0.0164,0.0000,0.7000,0.0000,False
+picking.out_of_stock,delivery.doorstep_instruction,0.0733,0.0000,0.7492,0.0000,False
+order.substitutions_allowed,picking.bulk_items,0.1424,0.0000,0.7602,0.0000,False
+order.basket_size,delivery.outcome,0.0268,-0.0000,0.7000,0.0000,False
+picking.bulk_items,delivery.outcome,0.1430,-0.0001,0.7602,0.0000,False
+order.basket_size,delivery.doorstep_instruction,0.0965,-0.0029,0.7492,0.0000,False
+order.delivery_window,picking.bulk_items,0.1555,-0.0032,0.7602,0.0000,False
+order.basket_size,picking.bulk_items,0.1546,-0.0139,0.7602,0.0000,False
+picking.bulk_items,delivery.doorstep_instruction,0.2006,-0.0150,0.7871,0.0000,False
