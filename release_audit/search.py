@@ -86,8 +86,10 @@ def _score(args):
     keys = ev.keys(view)
     lk = ev.leakage(view, keys=keys, with_nb=False)
     ut = ev.utility(view, keys=keys)
+    # Under Monte Carlo the less biased estimates are used: Miller-Madow MI and held-out accuracy.
     return idx, OrderedDict([("design", design), ("items", with_items), ("label", label(design, with_items)),
-                             ("mi_bits", lk["mi_bits"]), ("bayes_accuracy", lk["bayes_accuracy"]),
+                             ("mi_bits", lk.get("mi_bits_miller_madow", lk["mi_bits"])),
+                             ("bayes_accuracy", lk.get("bayes_accuracy_heldout", lk["bayes_accuracy"])),
                              ("p_exclusion", lk["p_exclusion"]), ("utility", ut["share"])])
 
 

@@ -55,8 +55,8 @@ def budget(ev):
             keys = ev.keys(view)
             pair = ev.leakage(view, keys=keys, with_nb=False)
             syn = pair["mi_bits"] - alone_cache[f.name]["mi_bits"] - alone_cache[g.name]["mi_bits"]
-            new_excl = pair["p_exclusion"] > 0 and alone_cache[f.name]["p_exclusion"] == 0 \
-                and alone_cache[g.name]["p_exclusion"] == 0
+            new_excl = (ev.joint.exact and pair["p_exclusion"] > 0 and alone_cache[f.name]["p_exclusion"] == 0
+                        and alone_cache[g.name]["p_exclusion"] == 0)
             pairs.append(OrderedDict([("fields", (f.name, g.name)), ("stages", (f.stage, g.stage)),
                                       ("mi_pair", pair["mi_bits"]), ("synergy_bits", syn),
                                       ("bayes_pair", pair["bayes_accuracy"]), ("p_exclusion", pair["p_exclusion"]),

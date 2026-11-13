@@ -22,7 +22,7 @@ def _mode_line(joint):
     if joint.exact:
         return "Exact enumeration over %d raw records with positive probability." % len(joint)
     return ("**Monte Carlo** (%s): the raw space exceeds the enumeration limit. Bayes accuracy is given as a "
-            "resubstitution plug-in (optimistic) and a held-out estimate with its standard error; mutual "
+            "resubstitution plug-in (optimistic) and a held-out plug-in classifier (usually pessimistic) with its standard error; mutual "
             "information as a plug-in (biased upward) and Miller-Madow corrected; utility by entailment on the "
             "sampled support (it may overstate conveyance)." % joint.note)
 
@@ -58,11 +58,24 @@ def audit(out, model, joint, views, budget, search):
                                     f4(views[next(iter(views))][0]["h_target_bits"])), "",
           "## Views", "",
           "Bayes accuracy is the best any attacker can do; nb_limit is naive Bayes with unlimited training data; "
-          "MI is I(target; view). Utility is the expected share of action items the view entails.", "",
-          "| View | Bayes accuracy | MI (bits) | nb_limit | Excluding mass | Utility |", "|---|---|---|---|---|---|"]
-    for name, (lk, ut, _ex) in views.items():
-        L.append("| %s | %s | %s | %s | %s | %s |" % (name, f4(lk["bayes_accuracy"]), f4(lk["mi_bits"]),
-                                                      f4(lk["nb_limit"]), f4(lk["p_exclusion"]), f4(ut["share"])))
+          "MI is I(target; view). Utility is the expected share of action items the view entails.", ""]
+    if joint.exact:
+        L += ["| View | Bayes accuracy | MI (bits) | nb_limit | Excluding mass | Utility |", "|---|---|---|---|---|---|"]
+        for name, (lk, ut, _ex) in views.items():
+            L.append("| %s | %s | %s | %s | %s | %s |" % (name, f4(lk["bayes_accuracy"]), f4(lk["mi_bits"]),
+                                                          f4(lk["nb_limit"]), f4(lk["p_exclusion"]), f4(ut["share"])))
+    else:
+        L += ["Monte Carlo estimates. The Bayes accuracy is bracketed: the held-out value scores a plug-in "
+              "classifier fitted on half the samples and tends to understate it when view values are many; the "
+              "resubstitution value overstates it. The Miller-Madow MI corrects part of the plug-in MI's upward "
+              "bias. Logical exclusions cannot be established from samples and are not reported. Raise "
+              "--max-records for an exact answer, or --mc-samples to narrow the bracket.", "",
+              "| View | Bayes accuracy, held-out (SE) | Bayes, resubstitution (optimistic) | MI, Miller-Madow | "
+              "MI, plug-in (biased up) | nb (plug-in) | Utility (sampled support) |", "|---|---|---|---|---|---|---|"]
+        for name, (lk, ut, _ex) in views.items():
+            L.append("| %s | %s (%s) | %s | %s | %s | %s | %s |" % (
+                name, f4(lk["bayes_accuracy_heldout"]), f4(lk["bayes_accuracy_heldout_se"]), f4(lk["bayes_accuracy"]),
+                f4(lk["mi_bits_miller_madow"]), f4(lk["mi_bits"]), f4(lk["nb_limit"]), f4(ut["share"])))
     ex_lines = []
     for name, (_lk, _ut, ex) in views.items():
         for mass, desc, zero in ex:

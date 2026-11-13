@@ -144,10 +144,10 @@ An item is one output the downstream task needs. It is defined by ordered rules 
 
 | Output | Exact mode | Monte Carlo mode (raw space above `max_records`) |
 |---|---|---|
-| Bayes accuracy | exact fraction | resubstitution plug-in (optimistic) and held-out estimate with SE |
+| Bayes accuracy | exact fraction | bracketed: resubstitution plug-in (optimistic) and held-out plug-in classifier with SE (usually pessimistic) |
 | Mutual information (bits) | exact probabilities, double-precision logs | plug-in (biased upward) and Miller-Madow corrected |
 | `nb_limit` | exact accuracy of naive Bayes with unlimited training data | plug-in estimate |
-| Logical exclusions, determination | exact mass and the largest view values | on the sampled support only |
+| Logical exclusions, determination | exact mass and the largest view values | not reported (a sampled zero is not a hard constraint) |
 | Utility by entailment | exact | on the sampled support (may overstate) |
 
 Per-field budget (exact mode, or estimated in Monte Carlo mode):

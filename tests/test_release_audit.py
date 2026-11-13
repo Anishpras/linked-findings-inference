@@ -123,6 +123,13 @@ class MonteCarlo(unittest.TestCase):
             self.assertLess(abs(float(a["bayes_accuracy"]) - b["bayes_accuracy_heldout"]), 5 * b["bayes_accuracy_heldout_se"] + 0.01)
             self.assertLess(abs(a["mi_bits"] - b["mi_bits_miller_madow"]), 0.02)
 
+    def test_no_exclusions_claimed_from_samples(self):  # v1.1.1
+        m = model.load(HOUSEHOLD)
+        mc = measures.Evaluator(model.build_joint(m, max_records=100, mc_samples=5000, seed=2))
+        self.assertIsNone(mc.leakage(m.views["C"])["p_exclusion"])
+        self.assertEqual(mc.exclusions(m.views["C"]), [])
+        self.assertFalse(any(p["exclusion_only_when_linked"] for p in budget.budget(mc)["pairs"]))
+
     def test_sampling_is_deterministic(self):
         m = model.load(GROCERY)
         self.assertEqual(model.sample(m, 50, 3), model.sample(m, 50, 3))

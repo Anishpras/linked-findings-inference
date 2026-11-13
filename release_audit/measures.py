@@ -2,8 +2,9 @@
 
 Leakage (per view):
   bayes_accuracy  sum_v max_t P(t, v): the accuracy of the best possible attacker. Exact Fraction
-                  under enumeration; under Monte Carlo the resubstitution plug-in (optimistic) and
-                  a held-out estimate (half/half split) with its binomial standard error.
+                  under enumeration. Under Monte Carlo it is bracketed: the resubstitution plug-in
+                  (optimistic) and a held-out plug-in classifier (half/half split; usually
+                  pessimistic when view values are many) with its binomial standard error.
   mi_bits         I(target; view) = H(target) - H(target | view), in bits (log2 in double precision
                   over exact probabilities, summed with math.fsum). Monte Carlo: plug-in (biased
                   upward) and Miller-Madow corrected.
@@ -135,8 +136,10 @@ class Evaluator:
             ("mi_bits", self.h_target - h_cond),
             ("h_target_bits", self.h_target),
             ("h_target_given_view_bits", h_cond),
-            ("p_exclusion", Fraction(excl, total) if exact else excl / total),
-            ("p_determined", Fraction(det, total) if exact else det / total),
+            # Exclusion needs a true zero. Under Monte Carlo a zero count is only "not sampled",
+            # so exclusion and determination are not established (None) in that mode.
+            ("p_exclusion", Fraction(excl, total) if exact else None),
+            ("p_determined", Fraction(det, total) if exact else None),
         ])
         if not exact:
             k_eff = len(agg) * self.T - len(agg) - self.T + 1  # (non-empty cells) df approximation
@@ -223,7 +226,10 @@ class Evaluator:
         return correct / self.joint.total
 
     def exclusions(self, view, keys=None, limit=8):
-        """Up to `limit` view values (by mass) that rule out a target value, decoded."""
+        """Up to `limit` view values (by mass) that rule out a target value, decoded. Exact mode
+        only: sampled zeros are not hard constraints."""
+        if not self.joint.exact:
+            return []
         keys = keys if keys is not None else self.keys(view)
         agg = self.table(keys)
         examples = {}
