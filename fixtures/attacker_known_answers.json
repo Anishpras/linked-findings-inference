@@ -1,0 +1,58 @@
+{
+  "fixture_version": "1.0.0",
+  "note": "Hand-computed known answers for the attacker script (PROTOCOL.md section 5), written by hand. Ten training rows over two schema-linked fields; four scored rows. Training counts: low 4, medium 2, high 4 (baseline tie low/high breaks to low). Prior add-1: low 5/13, medium 3/13, high 5/13. Each field has K = 3 seen values, so likelihood denominators are n_band + 4 (low 8, medium 6, high 8). The nb_pair joint field has K = 4 seen values (denominators n_band + 5: 9, 7, 9). T2 and T3 exercise the unseen-value rule (skip, no factor); T3 under nb_pair and T2 under nb_pair fall back to the prior and tie low/high -> low. T1 is the only tuple with >= 5 training occurrences (lookup covered); T4's tuple occurs twice (fallback to nb).",
+  "train": [
+    {"x": {"r1.event_code": "home_major", "r2.resolution": "settled_in_full"}, "y": "high"},
+    {"x": {"r1.event_code": "home_major", "r2.resolution": "settled_in_full"}, "y": "high"},
+    {"x": {"r1.event_code": "home_major", "r2.resolution": "settled_in_full"}, "y": "high"},
+    {"x": {"r1.event_code": "home_major", "r2.resolution": "settled_in_full"}, "y": "high"},
+    {"x": {"r1.event_code": "home_major", "r2.resolution": "settled_in_full"}, "y": "medium"},
+    {"x": {"r1.event_code": "home_major", "r2.resolution": "outstanding"}, "y": "low"},
+    {"x": {"r1.event_code": "home_major", "r2.resolution": "outstanding"}, "y": "low"},
+    {"x": {"r1.event_code": "home_minor", "r2.resolution": "settled_in_full"}, "y": "low"},
+    {"x": {"r1.event_code": "home_minor", "r2.resolution": "settled_in_full"}, "y": "medium"},
+    {"x": {"r1.event_code": "none", "r2.resolution": "not_applicable"}, "y": "low"}
+  ],
+  "scored": [
+    {
+      "id": "T1",
+      "x": {"r1.event_code": "home_major", "r2.resolution": "settled_in_full"},
+      "expected": {
+        "baseline": {"pred": "low", "p": ["5/13", "3/13", "5/13"]},
+        "nb": {"pred": "high", "p": ["30/187", "32/187", "125/187"], "skipped": 0},
+        "nb_pair": {"pred": "high", "p": ["35/264", "54/264", "175/264"], "skipped": 0},
+        "lookup": {"pred": "high", "p": ["1/8", "2/8", "5/8"], "covered": true, "tuple_count": 5}
+      }
+    },
+    {
+      "id": "T2",
+      "x": {"r1.event_code": "home_minor", "r2.resolution": "outstanding"},
+      "expected": {
+        "baseline": {"pred": "low", "p": ["5/13", "3/13", "5/13"]},
+        "nb": {"pred": "low", "p": ["90/137", "32/137", "15/137"], "skipped": 0},
+        "nb_pair": {"pred": "low", "p": ["5/13", "3/13", "5/13"], "skipped": 1},
+        "lookup": {"pred": "low", "p": ["90/137", "32/137", "15/137"], "covered": false, "tuple_count": 0}
+      }
+    },
+    {
+      "id": "T3",
+      "x": {"r1.event_code": "vehicle_major", "r2.resolution": "settled_in_full"},
+      "expected": {
+        "baseline": {"pred": "low", "p": ["5/13", "3/13", "5/13"]},
+        "nb": {"pred": "high", "p": ["10/47", "12/47", "25/47"], "skipped": 1},
+        "nb_pair": {"pred": "low", "p": ["5/13", "3/13", "5/13"], "skipped": 1},
+        "lookup": {"pred": "high", "p": ["10/47", "12/47", "25/47"], "covered": false, "tuple_count": 0}
+      }
+    },
+    {
+      "id": "T4",
+      "x": {"r1.event_code": "home_major", "r2.resolution": "outstanding"},
+      "expected": {
+        "baseline": {"pred": "low", "p": ["5/13", "3/13", "5/13"]},
+        "nb": {"pred": "low", "p": ["135/242", "32/242", "75/242"], "skipped": 0},
+        "nb_pair": {"pred": "low", "p": ["105/167", "27/167", "35/167"], "skipped": 0},
+        "lookup": {"pred": "low", "p": ["135/242", "32/242", "75/242"], "covered": false, "tuple_count": 2}
+      }
+    }
+  ]
+}
