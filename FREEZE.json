@@ -74,6 +74,52 @@
         "examples/household/spec.json": "bbf3c209cc607f997192cf638af06199cc05333f06bcf2e14c9dc236c4da4e6a",
         "examples/grocery/records.csv": "6e2ef4c4702ee6b29ef4740288fe97e487a01360076a6851836739a093969dd1"
       }
+    },
+    {
+      "label": "v1.1.1",
+      "frozen_at_utc": "2026-11-13T16:11:31+00:00",
+      "fixture_version": "1.1.0",
+      "note": "Post-freeze toolkit fix (Revisions v1.1.1); exact mode and pilot unchanged. Recorded after a passing dev run (164/164) with identical files.",
+      "sha256": {
+        "PROTOCOL.md": "27bd69f8f344719b745d4873cf4b0a08729da1dae1bc3565a9b2f1459ca7be9b",
+        "run_pilot.py": "ad7519b803c8d7b7b9d9b6699824a4dfbe53b4cf43b80fc0bcf6933c9fdd2b01",
+        "fixtures/attacker_known_answers.json": "1e4cfbd23e8371ace6455dc5c344b84ef0af87ba9706b34d29d3ea38f97fadfe",
+        "fixtures/hand_examples.json": "8a492caaf2b4a4f57eb14072547aa42a43319a69503b355d2b4b645587ee7cc7",
+        "lfi/__init__.py": "b3590714ac0e77395ceb1b92515aff69f4c171ced653e68ae6845fda818e6b08",
+        "lfi/attacker.py": "6825b8dd860afe4304cb90fcf5cd7a2b3cad6ad0a66b27e7363b5611ff6d0623",
+        "lfi/checklist.py": "8f904dc9ac3e4cfd6b0e3b247473665587df33966d7c8fc15c0791d1c0c0d31a",
+        "lfi/exact_utility.py": "6c02e5e5616b0682f5f0451ce50c0361078b75459bbcd9429715ad99bd90dcff",
+        "lfi/exploratory.py": "ccfbd02494beb1a8a82f998598f672bd39d62dec86285139ba849be4b3f30272",
+        "lfi/exposure.py": "9be39afe13fe9676f9cf74c3857c04adc30214a22bf40b7c9412b3416a6defb9",
+        "lfi/generator.py": "f643662d276b1eabab6a5d7015338685016dd05c42b0a91f72fa4bdb75f473fd",
+        "lfi/isolate.py": "d934900f8de5ea40808db03190e4e8b3f23a6868d5c3139d2aa241a4c13571bc",
+        "lfi/metrics.py": "e519bbcb2210116bcbad98083fdc30cc989679af667747d02f24a9b3d8d870d9",
+        "lfi/oracle.py": "c4c4ba654f8afdba85b87db07f45bfac9777ffb225a7b011478fb48ba8be7429",
+        "lfi/pipeline.py": "ac6908a0cd6a746bf368143047b5af3dcdfb38d0f3644b00e9d6a98ac1633cc7",
+        "lfi/postreview.py": "4a69fece37e8ee3572d3f81bd9a013105c5843d443bafeaff796e55e6bbcb169",
+        "lfi/probe.py": "e8a26552b1543622bbec191c6e72721fd2a635264a4907cf56b4f83333d39ce0",
+        "lfi/report.py": "174a4b66ecb2a554471805691a2ff0df242d6a0b419f45fa8025f8cc3a03c56e",
+        "lfi/spec.py": "4f8f7adba7a0211d5536d8bb9d4d0c22a99ec95e72b3a03caf8d30c67036b2ef",
+        "lfi/validate.py": "43c066e3fa59f170b1141e6af6fb796e68b0c0d680fd2a2503eaa4e4d3f1929f",
+        "lfi/views.py": "ef780ff4e7fa31098c31af774d05624a2048abbcc936543589aa63b9c0a37115",
+        "tests/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "tests/test_mutations.py": "65c171ec78a1d89975a8e910a1414117ae95f71eb6cb7673528567cd99137fb3",
+        "tests/test_release_audit.py": "654180d3b63f382c4a53aa70a9598d04c45f72a36016e7aeff5d5364cc767e52",
+        "tests/test_units.py": "cdc9dd2ab8ff528a18a5c6ce5ee4b367be5b20b05e2bc91fb90ce59858c93618",
+        "release_audit/__init__.py": "cd447cae38548c24c1f4bac0d10281b8b15205e8556b029244ab7f34c3fc5032",
+        "release_audit/__main__.py": "7ee48b656eb119d9e197effe0ecc8241beeac59e77e398ee28c9ff914a79c358",
+        "release_audit/budget.py": "dc46d1f15e82a1a43ceff999bbdda7d98fe76301483818e34656102c1e0467b3",
+        "release_audit/measures.py": "2f38fa83903ef431ca641b1cff26a1e73caa54f798abac0ad6e21e44927683e2",
+        "release_audit/model.py": "e28cbd7b76d2bca41bdd67387f30c254f555744ab9d6f73a2d3b0ab5324aa841",
+        "release_audit/realdata.py": "59d180b9f158622a4a994ef9ee4c0ed52005a746d6f0ae15801ee24176922bae",
+        "release_audit/report.py": "a33d1975925987ef4c7637a0b1c7b7f70548c5c10db7a0a9d40b9437f37c6c02",
+        "release_audit/rules.py": "de82b310bd2a9e76e80ca1f161e9d85c4adf16db72a09b8c0627eb536914715e",
+        "release_audit/search.py": "37af61935d45df795cc106cdc2ff69d066ce95a62ab960ff608fc694685d64a0",
+        "release_audit/viewdefs.py": "04442b30c00d066fd967b1fd1f8c9f12e33c9c9f7b3920f055b65ea8e0765ef3",
+        "examples/grocery/spec.json": "e4934b5a36a0efa479405d18881198ad5ec0dfecb855f679d7c8be659441e0a0",
+        "examples/household/spec.json": "bbf3c209cc607f997192cf638af06199cc05333f06bcf2e14c9dc236c4da4e6a",
+        "examples/grocery/records.csv": "6e2ef4c4702ee6b29ef4740288fe97e487a01360076a6851836739a093969dd1"
+      }
     }
   ]
 }
