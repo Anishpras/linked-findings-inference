@@ -2,7 +2,7 @@
   {
     "check": "x_unit_and_mutation_tests",
     "ok": true,
-    "detail": "Ran 50 tests | OK"
+    "detail": "Ran 51 tests | OK"
   },
   {
     "check": "1_hand_example:H1",
