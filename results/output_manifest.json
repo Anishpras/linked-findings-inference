@@ -7,6 +7,22 @@
     "sha256": "605388f4dea0fe2ae36ddb1e7df93d5db8738fb793387c7ca972ba2e84b005de",
     "bytes": 7876
   },
+  "results/e_vs_d.csv": {
+    "sha256": "ab8c28940c042908497458623d9f5d1a1893347d3430974feb26ddf62725f7a2",
+    "bytes": 3270
+  },
+  "results/exploratory_controls.csv": {
+    "sha256": "a029b7f8dca8945aac83bf1f197d41bc89674dbfed96ec0768631a2dd2ad322e",
+    "bytes": 1763
+  },
+  "results/exploratory_controls.md": {
+    "sha256": "46363928931920aa851944a7c698cf7ff6ac805a3839cbf9b4ca04295e1fcab8",
+    "bytes": 3405
+  },
+  "results/exploratory_e_vs_d.md": {
+    "sha256": "a19d6ac3c6577b6aa73085868582ba5562802f2b4532436d1c059dad59cdf9ae",
+    "bytes": 5169
+  },
   "results/exposure_and_deduction.csv": {
     "sha256": "bd25660e458ec0d24f47b63ad4cb6900d0bb94d8f3f9a18fb5135a855359145f",
     "bytes": 3788
@@ -15,9 +31,21 @@
     "sha256": "28fc31d787b281209beb81a072cfcbe6ca163af7c09816989dbd0ba5cc244c98",
     "bytes": 76868
   },
+  "results/h2a_seed_runs.csv": {
+    "sha256": "326ae72d04d2e5c20563c9940962060f4d6aeb45129e34be17147cc962f40007",
+    "bytes": 2483
+  },
+  "results/h2a_summary.md": {
+    "sha256": "652719ec3ab946e28f46aca8160604bac8d0e0ab6a1037b3be94e8b425df79ce",
+    "bytes": 3622
+  },
   "results/hypotheses.csv": {
-    "sha256": "f0e3104260bec5186ff4d65585a68ff484eff2989555fecff5bc097950a52e1e",
-    "bytes": 2707
+    "sha256": "f80df752aff3d77966225f3ed61ead5f6018fbec8123852137b333a0448cd50d",
+    "bytes": 4680
+  },
+  "results/learning_curve.csv": {
+    "sha256": "4e457ad7795a986dbc3cae21c81795c6ac92ac203e5759f60726a6acc837c4f2",
+    "bytes": 5939
   },
   "results/lookup_coverage.csv": {
     "sha256": "4cdfc1af0842133b035d53e04ea0d2f29168bbec2a0d116c3696898408b0c34e",
@@ -28,16 +56,24 @@
     "bytes": 43430287
   },
   "results/per_case_report_checks.csv": {
-    "sha256": "daea487d1701d2d473e7effa0e0b9bb56882a920f0f42a6b20cee4996625c281",
-    "bytes": 157699496
+    "sha256": "ca04b80fca866cc43c6b39f0bd32d04a9dd4d06986f94d0ef67233cb5dfe888b",
+    "bytes": 214120391
   },
   "results/population_oracle.csv": {
-    "sha256": "9e1b762e87ccfa47d15454667ea047778b130c4f1de0db0eac84b8ad0629e473",
-    "bytes": 4372
+    "sha256": "a0004e55a74645129685d13c785787deb890debbdb003f067c83a94213c865b5",
+    "bytes": 6098
+  },
+  "results/post_review_corrections.md": {
+    "sha256": "18e4db6db1cb2837d3d031e2b9aea43a1e1bda9f303a183389c8b66ad6ac58ac",
+    "bytes": 3460
+  },
+  "results/revision_v1.1_delta.md": {
+    "sha256": "8da88746ea813c8cc59e8d456af0cdaabf48dac3ac70d65199aff2a492e166c2",
+    "bytes": 6535
   },
   "results/run_info.json": {
-    "sha256": "78a880d4a698f590689190ef747652ccbb733de7349e6bec026dbc14a42154bf",
-    "bytes": 6003
+    "sha256": "7244e7973a396cd778553bf259a4102e452abfc0957be0af9be52a2988655a2e",
+    "bytes": 7697
   },
   "results/seed_replicates.csv": {
     "sha256": "3e8fc7f21fc15822f10c67574afcc46af756d0e1694f92f42cdf0feee9a2a73e",
@@ -56,20 +92,24 @@
     "bytes": 76873
   },
   "results/summary_utility.csv": {
-    "sha256": "059c2dd1ca1024d57a7dd11531bcdd7931e1cea798c17d5556ab72563ba2740d",
-    "bytes": 5283
+    "sha256": "a96e0efadab7f81b778759a0822b0a7c28c4fdd7102b930fff611b7c39b4866b",
+    "bytes": 7492
   },
   "results/tradeoff.csv": {
     "sha256": "e50b1fc24076d571e4b247cb489e5d25d2dd29534cc62aab310e5c95be020df7",
     "bytes": 3051
   },
   "results/utility_by_item.csv": {
-    "sha256": "32bfca9db4b9e5a13a5d8a6fe5bd86e02424e43e44ee59fce81a96ee7f2fccbc",
-    "bytes": 43827
+    "sha256": "5b3585bd3010a49c91bc366923919f15e159adf8e3214d82ccaf7e44e4f0fd31",
+    "bytes": 54701
+  },
+  "results/utility_exact.csv": {
+    "sha256": "7463015abc2d529e6447c785b7bd24ff8bfcfdc986ce1602dc3ef67d8557faa2",
+    "bytes": 9770
   },
   "results/validation.json": {
-    "sha256": "d07ffa9fef4eebab6227728ef3ad9ea9ce1a51606f4ac7807c030865f7ca6e83",
-    "bytes": 18240
+    "sha256": "d498835beed22533248fd69989301ebef04112e8f3684aa854468b5615734c20",
+    "bytes": 18708
   },
   "results/worked_cases.md": {
     "sha256": "92f82bbb0b478cb1aa9f4d8e3563e1efc9b66bd62700c617a79778dfbc15782e",

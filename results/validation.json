@@ -2,7 +2,7 @@
   {
     "check": "x_unit_and_mutation_tests",
     "ok": true,
-    "detail": "Ran 32 tests | OK"
+    "detail": "Ran 50 tests | OK"
   },
   {
     "check": "1_hand_example:H1",
@@ -42,7 +42,7 @@
   {
     "check": "9_attacker_source_reads_stdin_only",
     "ok": true,
-    "detail": ""
+    "detail": "audits the shipped lfi/attacker.py only; not a sandbox"
   },
   {
     "check": "9_isolation_probe",
@@ -803,5 +803,20 @@
     "check": "6_control_no_exposure",
     "ok": true,
     "detail": "60/60 pass"
+  },
+  {
+    "check": "x_v1_1_exact_strict_renderer_never_wrong",
+    "ok": true,
+    "detail": "exact enumeration over every raw record: supported-wrong mass is 0 in every view"
+  },
+  {
+    "check": "x_v1_1_nb_limit_not_above_bayes",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "x_v1_1_e_vs_d_variants_match_oracle",
+    "ok": true,
+    "detail": "C, D and E variants equal the oracle's exact values"
   }
 ]

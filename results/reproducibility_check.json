@@ -2,7 +2,7 @@
   "check": "10_reproducibility_two_full_runs_in_temp_dirs",
   "split": "test",
   "python_version": "3.13.7",
-  "files_compared": 67,
+  "files_compared": 77,
   "exit_codes": [
     0,
     0
@@ -10,7 +10,7 @@
   "runs_identical": true,
   "differing_files": [],
   "committed_manifest_found": true,
-  "committed_manifest_files": 66,
+  "committed_manifest_files": 76,
   "matches_committed_manifest": true,
   "files_differing_from_committed_manifest": [],
   "files_missing_from_committed_manifest": [],
