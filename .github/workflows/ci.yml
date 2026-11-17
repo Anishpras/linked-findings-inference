@@ -6,7 +6,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {os: ubuntu-latest, python: "3.9"}
+          - {os: ubuntu-24.04, python: "3.9"}
           - {os: ubuntu-latest, python: "3.12"}
           - {os: ubuntu-latest, python: "3.13"}
           - {os: ubuntu-latest, python: "3.14"}
@@ -19,10 +19,38 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
+      - name: Every number in the paper matches the committed results
+        run: python paper/check_numbers.py
       - name: Pilot (test split; refuses to run unless files match FREEZE.json; 164 checks)
         run: python run_pilot.py
-      - name: Committed results unchanged (output_manifest.json also pins the SHA-256 of the large per-case files and datasets)
-        run: git diff --exit-code -- results ':(exclude)results/run_info.json'
+      - name: Committed results unchanged
+        # output_manifest.json pins the SHA-256 of every output, including the large per-case files
+        # and datasets kept out of git. Two outputs record the machine rather than the study:
+        # run_info.json (Python version, platform) and one detail string in validation.json (the
+        # environment variables the OS injects into the isolated attacker process). Everything
+        # else must match the committed bytes.
+        run: |
+          git diff --exit-code -- results ':(exclude)results/run_info.json' ':(exclude)results/output_manifest.json' ':(exclude)results/validation.json'
+          python - <<'PY'
+          import json, subprocess
+          def committed(path):
+              return json.loads(subprocess.check_output(["git", "show", "HEAD:" + path]))
+          def current(path):
+              with open(path) as f:
+                  return json.load(f)
+          machine = {"results/run_info.json", "results/validation.json"}
+          old, new = committed("results/output_manifest.json"), current("results/output_manifest.json")
+          assert set(old) == set(new), sorted(set(old) ^ set(new))
+          changed = sorted(k for k in old if k not in machine and old[k] != new[k])
+          assert not changed, changed
+          def without_env_detail(checks):
+              return [{k: v for k, v in c.items() if not (c["check"] == "9_isolation_probe" and k == "detail")}
+                      for c in checks]
+          old_v, new_v = committed("results/validation.json"), current("results/validation.json")
+          assert without_env_detail(old_v) == without_env_detail(new_v), "validation.json differs"
+          assert all(c["ok"] for c in new_v)
+          print("unchanged: %d manifest entries, %d validation checks" % (len(old) - len(machine), len(new_v)))
+          PY
       - name: Toolkit examples reproduce byte for byte
         run: |
           python -m release_audit examples/household/spec.json --out /tmp/household
@@ -31,5 +59,3 @@ jobs:
           diff -r examples/household/output /tmp/household
           diff -r examples/grocery/output /tmp/grocery
           diff -r examples/grocery/output_records /tmp/records
-      - name: Every number in the paper matches the results
-        run: python paper/check_numbers.py
