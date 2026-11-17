@@ -146,9 +146,9 @@ python3 -m release_audit --data examples/grocery/records.csv --target young_chil
 
 ## Citation and licence
 
-Citation metadata is in `CITATION.cff`; GitHub's "Cite this repository" button uses it.
+Archived on Zenodo: **https://doi.org/10.5281/zenodo.24304575** (all versions; this always resolves to the latest). Version 1.1.1 specifically: https://doi.org/10.5281/zenodo.24304576. Citation metadata is in `CITATION.cff`; GitHub's "Cite this repository" button uses it.
 
-> Prashun, A. (2026). *Can Several Minimal Findings Reveal a Hidden Attribute? An Exactly Solvable Pilot on Linked, Coarsened and Task-Output Releases, with a Release-Audit Toolkit* (Version 1.1.1) [Software and technical report]. https://github.com/Anishpras/linked-findings-inference
+> Prashun, A. (2026). *Can Several Minimal Findings Reveal a Hidden Attribute? An Exactly Solvable Pilot on Linked, Coarsened and Task-Output Releases, with a Release-Audit Toolkit* (Version 1.1.1) [Software and technical report]. Zenodo. https://doi.org/10.5281/zenodo.24304575
 
 - **Code:** MIT (`LICENSE`).
 - **Paper, protocol, fixtures, examples and results:** CC BY 4.0 (`LICENSE-DATA.md`).
