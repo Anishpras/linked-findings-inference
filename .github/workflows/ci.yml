@@ -1,0 +1,35 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {os: ubuntu-latest, python: "3.9"}
+          - {os: ubuntu-latest, python: "3.12"}
+          - {os: ubuntu-latest, python: "3.13"}
+          - {os: ubuntu-latest, python: "3.14"}
+          - {os: macos-latest, python: "3.13"}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Pilot (test split; refuses to run unless files match FREEZE.json; 164 checks)
+        run: python run_pilot.py
+      - name: Committed results unchanged (output_manifest.json also pins the SHA-256 of the large per-case files and datasets)
+        run: git diff --exit-code -- results ':(exclude)results/run_info.json'
+      - name: Toolkit examples reproduce byte for byte
+        run: |
+          python -m release_audit examples/household/spec.json --out /tmp/household
+          python -m release_audit examples/grocery/spec.json --out /tmp/grocery
+          python -m release_audit --data examples/grocery/records.csv --target young_children --spec examples/grocery/spec.json --out /tmp/records
+          diff -r examples/household/output /tmp/household
+          diff -r examples/grocery/output /tmp/grocery
+          diff -r examples/grocery/output_records /tmp/records
+      - name: Every number in the paper matches the results
+        run: python paper/check_numbers.py

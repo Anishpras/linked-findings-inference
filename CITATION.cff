@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this code, toolkit or results, please cite them as below."
+type: software
+title: "Can Several Minimal Findings Reveal a Hidden Attribute? An Exactly Solvable Pilot on Linked, Coarsened and Task-Output Releases, with a Release-Audit Toolkit"
+authors:
+  - family-names: Prashun
+    given-names: Anish
+version: 1.1.1
+date-released: 2026-11-17
+license:
+  - MIT
+  - CC-BY-4.0
+repository-code: "https://github.com/Anishpras/linked-findings-inference"
+keywords:
+  - AI agents
+  - privacy
+  - attribute inference
+  - composition attacks
+  - linked releases
+  - data minimisation
+  - generalisation
+  - release auditing
+abstract: >-
+  A reproducible pilot (Python 3 standard library only, synthetic data) and a reusable
+  toolkit (release_audit) for measuring how much small sets of structured findings,
+  passed between workflow stages, reveal about an attribute none of them states. A
+  fictional two-stage household workflow releases intake and follow-up findings while a
+  three-level reserve band stays hidden. On 3,000 test households the pilot compares one
+  release, two linked releases, a declared coarsening of the linked releases, and the
+  report-checklist answers alone, against attackers trained on 6,000 labels and against
+  exactly computed Bayes-optimal ceilings and mutual information, with a task-tied utility
+  measure from a strict, abstaining report renderer. The toolkit takes a JSON description
+  of a pipeline and reports exact leakage, a per-field information budget, Pareto-optimal
+  release designs and, for labelled records, cross-validated estimates.

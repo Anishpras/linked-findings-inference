@@ -143,3 +143,14 @@ python3 -m release_audit --data examples/grocery/records.csv --target young_chil
 | `results/` | v1.1 test-split outputs |
 | `results_dev/` | v1.1 dev-split outputs |
 | `results_v1.0/` | The frozen v1.0 outputs, verbatim |
+
+## Citation and licence
+
+Citation metadata is in `CITATION.cff`; GitHub's "Cite this repository" button uses it.
+
+> Prashun, A. (2026). *Can Several Minimal Findings Reveal a Hidden Attribute? An Exactly Solvable Pilot on Linked, Coarsened and Task-Output Releases, with a Release-Audit Toolkit* (Version 1.1.1) [Software and technical report]. https://github.com/Anishpras/linked-findings-inference
+
+- **Code:** MIT (`LICENSE`).
+- **Paper, protocol, fixtures, examples and results:** CC BY 4.0 (`LICENSE-DATA.md`).
+
+This work was prepared with substantial AI assistance; see the paper's acknowledgements.
