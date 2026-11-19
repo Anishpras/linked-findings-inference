@@ -4,7 +4,8 @@
   "version": "1.1.1",
   "creators": [
     {
-      "name": "Prashun, Anish"
+      "name": "Prashun, Anish",
+      "orcid": "0009-0007-6360-6017"
     }
   ],
   "description": "<p>A reproducible pilot and a reusable, standard-library Python toolkit (<code>python3 -m release_audit</code>) for measuring how much small sets of structured findings passed between workflow stages reveal about an attribute that none of them states.</p><p>The pilot uses a fictional two-stage household workflow with a hidden three-level reserve band. On 3,000 test households it compares one release, two linked releases, a declared coarsening of the linked releases and the report-checklist answers alone, against trained attackers and exactly computed Bayes-optimal ceilings, with a task-tied utility measure. The toolkit takes a JSON description of a pipeline and reports exact leakage, a per-field information budget, Pareto-optimal release designs and, for labelled records, cross-validated estimates.</p><p>Run <code>python3 run_pilot.py</code> to reproduce every result. Code: MIT. Paper, protocol, fixtures, examples and results: CC BY 4.0. All data are synthetic.</p>",
